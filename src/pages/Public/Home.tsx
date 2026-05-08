@@ -12,6 +12,7 @@ import { UNITS } from "@/lib/units";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
 import { GaleriSlider } from "@/components/shared/GaleriSlider";
+import { SocialLinks } from "@/components/shared/SocialLinks";
 import { IntroLoader } from "@/components/shared/IntroLoader";
 import { Reveal, Stagger, StaggerItem } from "@/components/shared/Reveal";
 import { motion } from "framer-motion";
@@ -449,6 +450,9 @@ export default function PublicHome() {
               <Row icon={MapPin} label="Alamat" value={settings?.alamat ?? "-"} />
               <Row icon={Phone} label="Telepon" value={settings?.telepon ?? "-"} />
               <Row icon={Mail} label="Email" value={settings?.email ?? "-"} />
+            </div>
+            <div className="mt-6">
+              <SocialLinks data={settings} />
             </div>
           </div>
           {settings?.map_embed && (

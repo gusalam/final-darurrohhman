@@ -565,6 +565,15 @@ export type Database = {
           map_embed: string | null
           nama_yayasan: string
           singleton: boolean
+          social_facebook: string | null
+          social_instagram: string | null
+          social_linkedin: string | null
+          social_telegram: string | null
+          social_threads: string | null
+          social_tiktok: string | null
+          social_twitter: string | null
+          social_whatsapp: string | null
+          social_youtube: string | null
           tagline: string | null
           telepon: string | null
           updated_at: string
@@ -588,6 +597,15 @@ export type Database = {
           map_embed?: string | null
           nama_yayasan?: string
           singleton?: boolean
+          social_facebook?: string | null
+          social_instagram?: string | null
+          social_linkedin?: string | null
+          social_telegram?: string | null
+          social_threads?: string | null
+          social_tiktok?: string | null
+          social_twitter?: string | null
+          social_whatsapp?: string | null
+          social_youtube?: string | null
           tagline?: string | null
           telepon?: string | null
           updated_at?: string
@@ -611,6 +629,15 @@ export type Database = {
           map_embed?: string | null
           nama_yayasan?: string
           singleton?: boolean
+          social_facebook?: string | null
+          social_instagram?: string | null
+          social_linkedin?: string | null
+          social_telegram?: string | null
+          social_threads?: string | null
+          social_tiktok?: string | null
+          social_twitter?: string | null
+          social_whatsapp?: string | null
+          social_youtube?: string | null
           tagline?: string | null
           telepon?: string | null
           updated_at?: string

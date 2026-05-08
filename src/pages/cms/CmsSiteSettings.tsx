@@ -108,6 +108,22 @@ export default function CmsSiteSettings() {
               <Field label="TK PGRI 02 Roudlotul Huffadz"><Textarea rows={3} value={row.deskripsi_tk ?? ""} onChange={(e) => setRow({ ...row, deskripsi_tk: e.target.value })} /></Field>
             </div>
           </div>
+
+          <div className="border-t border-border pt-4">
+            <h3 className="mb-1 font-display text-lg font-bold">Sosial Media</h3>
+            <p className="mb-3 text-xs text-muted-foreground">Opsional. Hanya yang diisi akan tampil di footer halaman utama. Gunakan URL lengkap (https://...). Untuk WhatsApp boleh nomor telepon (mis. 6281234567890).</p>
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <Field label="Facebook"><Input value={row.social_facebook ?? ""} onChange={(e) => setRow({ ...row, social_facebook: e.target.value })} placeholder="https://facebook.com/..." /></Field>
+              <Field label="Instagram"><Input value={row.social_instagram ?? ""} onChange={(e) => setRow({ ...row, social_instagram: e.target.value })} placeholder="https://instagram.com/..." /></Field>
+              <Field label="TikTok"><Input value={row.social_tiktok ?? ""} onChange={(e) => setRow({ ...row, social_tiktok: e.target.value })} placeholder="https://tiktok.com/@..." /></Field>
+              <Field label="YouTube"><Input value={row.social_youtube ?? ""} onChange={(e) => setRow({ ...row, social_youtube: e.target.value })} placeholder="https://youtube.com/@..." /></Field>
+              <Field label="Twitter / X"><Input value={row.social_twitter ?? ""} onChange={(e) => setRow({ ...row, social_twitter: e.target.value })} placeholder="https://x.com/..." /></Field>
+              <Field label="Telegram"><Input value={row.social_telegram ?? ""} onChange={(e) => setRow({ ...row, social_telegram: e.target.value })} placeholder="https://t.me/..." /></Field>
+              <Field label="WhatsApp (nomor / link)"><Input value={row.social_whatsapp ?? ""} onChange={(e) => setRow({ ...row, social_whatsapp: e.target.value })} placeholder="6281234567890" /></Field>
+              <Field label="LinkedIn"><Input value={row.social_linkedin ?? ""} onChange={(e) => setRow({ ...row, social_linkedin: e.target.value })} placeholder="https://linkedin.com/in/..." /></Field>
+              <Field label="Threads"><Input value={row.social_threads ?? ""} onChange={(e) => setRow({ ...row, social_threads: e.target.value })} placeholder="https://threads.net/@..." /></Field>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>
