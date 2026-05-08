@@ -80,7 +80,7 @@ const App = () => (
                     <Route path="/cms/posts" element={<ErrorBoundary label="CMS Posts"><CmsPosts /></ErrorBoundary>} />
                     <Route path="/cms/banners" element={<ErrorBoundary label="CMS Banners"><CmsBanners /></ErrorBoundary>} />
                     <Route path="/cms/pages" element={<ErrorBoundary label="CMS Pages"><CmsPages /></ErrorBoundary>} />
-                    <Route path="/cms/media" element={<ErrorBoundary label="Media Library"><CmsMedia /></ErrorBoundary>} />
+                    <Route path="/cms/hero" element={<ErrorBoundary label="Hero Settings"><CmsHero /></ErrorBoundary>} />
                     <Route path="/cms/settings" element={<ErrorBoundary label="Pengaturan Situs"><CmsSiteSettings /></ErrorBoundary>} />
                     <Route path="/cms/galeri" element={<ErrorBoundary label="Galeri"><CmsGaleri /></ErrorBoundary>} />
                   </Route>
