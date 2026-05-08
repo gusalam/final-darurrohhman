@@ -14,6 +14,9 @@ import { SEO } from "@/components/SEO";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { GaleriSlider } from "@/components/shared/GaleriSlider";
+import { IntroLoader } from "@/components/shared/IntroLoader";
+import { Reveal, Stagger, StaggerItem } from "@/components/shared/Reveal";
+import { motion } from "framer-motion";
 
 const PLACEHOLDER = "/placeholder.png";
 
@@ -133,6 +136,12 @@ export default function PublicHome() {
         image={settings?.logo_url}
         jsonLd={[breadcrumbLd, navLd]}
       />
+      <IntroLoader
+        enabled={hero?.intro_enabled ?? true}
+        logoUrl={hero?.intro_logo_url}
+        text={hero?.intro_text}
+        durationMs={hero?.intro_duration_ms}
+      />
       <PublicNavbar yayasanName={settings?.nama_yayasan} tagline={settings?.tagline} />
 
       <div className="min-w-0">
@@ -159,29 +168,51 @@ export default function PublicHome() {
               </>
             )
           )}
-          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24 md:px-8">
-            <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
-              <Sparkles className="mr-1 h-3 w-3" /> {hero?.badge_text ?? "Sistem Terpadu Pendidikan"}
-            </Badge>
-            <h1 className="font-display text-3xl font-bold md:text-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto max-w-6xl px-4 py-16 md:py-24 md:px-8"
+          >
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+              <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
+                <Sparkles className="mr-1 h-3 w-3" /> {hero?.badge_text ?? "Sistem Terpadu Pendidikan"}
+              </Badge>
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="font-display text-3xl font-bold md:text-5xl"
+            >
               {hero?.title ?? settings?.hero_title ?? "Membentuk Generasi Qur'ani, Cerdas & Berakhlak Mulia"}
-            </h1>
-            <p className="mt-5 max-w-xl text-base text-white/90 md:text-lg">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.6 }}
+              className="mt-5 max-w-xl text-base text-white/90 md:text-lg"
+            >
               {hero?.description ?? settings?.hero_subtitle ?? settings?.deskripsi ?? "Yayasan Darul Rohman menyelenggarakan pendidikan Islam terpadu MI, SMP, SMK, Madrasah Diniyah, dan TK."}
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="mt-7 flex flex-wrap gap-3"
+            >
               <a href={hero?.button_primary_link ?? "#unit"}>
-                <Button size="lg" className="bg-secondary text-secondary-foreground">
+                <Button size="lg" className="bg-secondary text-secondary-foreground transition hover:scale-105">
                   {hero?.button_primary_text ?? "Jelajahi Unit"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </a>
               <a href={hero?.button_secondary_link ?? "#kontak"}>
-                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
+                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white transition hover:scale-105 hover:bg-white/20">
                   {hero?.button_secondary_text ?? "Hubungi Kami"}
                 </Button>
               </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </section>
 
       <ErrorBoundary silent label="Banners">
@@ -193,8 +224,10 @@ export default function PublicHome() {
                   <img
                     src={b.image_url || PLACEHOLDER}
                     alt={b.title || "Banner"}
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-5 text-white flex flex-col justify-end">
                     {b.title && <p className="font-bold">{b.title}</p>}
@@ -209,11 +242,11 @@ export default function PublicHome() {
 
       <section id="unit" className="bg-muted/40 py-14">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
-          <div className="text-center">
+          <Reveal className="text-center">
             <Badge variant="outline" className="border-primary text-primary">Unit Pendidikan</Badge>
             <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">MI · SMP · SMK · Madrasah · TK</h2>
-          </div>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          </Reveal>
+          <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { key: "mi" as const,       icon: BookOpen,      color: "gradient-primary", desc: settings?.deskripsi_mi },
               { key: "smp" as const,      icon: GraduationCap, color: "gradient-sky",     desc: settings?.deskripsi_smp },
@@ -223,23 +256,25 @@ export default function PublicHome() {
             ].map((u) => {
               const info = UNITS[u.key];
               return (
-                <Card key={u.key} id={`unit-${u.key}`} className="scroll-mt-20 rounded-2xl border-border shadow-soft overflow-hidden">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-soft">
-                        <img src={info.logo} alt={`Logo ${info.short}`} className="h-full w-full object-contain" />
+                <StaggerItem key={u.key}>
+                  <Card id={`unit-${u.key}`} className="scroll-mt-20 rounded-2xl border-border shadow-soft overflow-hidden hover-lift hover-glow">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-soft">
+                          <img src={info.logo} alt={`Logo ${info.short}`} loading="lazy" decoding="async" className="h-full w-full object-contain" />
+                        </div>
+                        <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${u.color} text-primary-foreground`}>
+                          <u.icon className="h-5 w-5" />
+                        </div>
                       </div>
-                      <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${u.color} text-primary-foreground`}>
-                        <u.icon className="h-5 w-5" />
-                      </div>
-                    </div>
-                    <h3 className="mt-4 font-display text-lg font-bold">{info.fullName}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{u.desc ?? "Deskripsi belum diisi pada CMS."}</p>
-                  </CardContent>
-                </Card>
+                      <h3 className="mt-4 font-display text-lg font-bold">{info.fullName}</h3>
+                      <p className="mt-2 text-sm text-muted-foreground">{u.desc ?? "Deskripsi belum diisi pada CMS."}</p>
+                    </CardContent>
+                  </Card>
+                </StaggerItem>
               );
             })}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -367,33 +402,37 @@ export default function PublicHome() {
             <div className="mx-auto max-w-7xl px-4 md:px-6">
               <Badge variant="outline"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
               <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Berita & Artikel</h2>
-              <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {berita.map((p) => (
-                  <Link key={p.id} to={`/berita/${p.slug}`} className="group block">
-                    <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft transition group-hover:-translate-y-1 group-hover:shadow-lg">
-                      <div className="h-40 bg-muted">
-                        {p.cover_url ? (
-                          <img
-                            src={p.cover_url}
-                            alt={p.title}
-                            onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                            className="h-full w-full object-cover transition group-hover:scale-105"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center text-muted-foreground">
-                            <ImageIcon className="h-8 w-8 opacity-40" />
-                          </div>
-                        )}
-                      </div>
-                      <CardContent className="space-y-2 p-5">
-                        <Badge className="bg-accent text-accent-foreground capitalize">{p.category}</Badge>
-                        <h3 className="font-display text-lg font-bold group-hover:text-primary">{p.title}</h3>
-                        <p className="line-clamp-3 text-sm text-muted-foreground">{p.excerpt ?? p.content}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                  <StaggerItem key={p.id}>
+                    <Link to={`/berita/${p.slug}`} className="group block h-full">
+                      <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft hover-lift">
+                        <div className="h-40 overflow-hidden bg-muted">
+                          {p.cover_url ? (
+                            <img
+                              src={p.cover_url}
+                              alt={p.title}
+                              loading="lazy"
+                              decoding="async"
+                              onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
+                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                          ) : (
+                            <div className="flex h-full w-full items-center justify-center text-muted-foreground">
+                              <ImageIcon className="h-8 w-8 opacity-40" />
+                            </div>
+                          )}
+                        </div>
+                        <CardContent className="space-y-2 p-5">
+                          <Badge className="bg-accent text-accent-foreground capitalize">{p.category}</Badge>
+                          <h3 className="font-display text-lg font-bold transition-colors group-hover:text-primary">{p.title}</h3>
+                          <p className="line-clamp-3 text-sm text-muted-foreground">{p.excerpt ?? p.content}</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </StaggerItem>
                 ))}
-              </div>
+              </Stagger>
             </div>
           </section>
         )}
@@ -416,8 +455,10 @@ export default function PublicHome() {
                   key={u}
                   src={u}
                   alt="Galeri"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                  className="aspect-square rounded-xl bg-muted object-cover"
+                  className="aspect-square rounded-xl bg-muted object-cover transition-transform duration-500 hover:scale-105"
                 />
               ))}
             </div>
