@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { ArrowLeft, MapPin, Phone, Mail, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -37,7 +37,7 @@ const DESC_BY_UNIT: Record<UnitKey, string> = {
 };
 
 export default function UnitPage() {
-  const { slug = "" } = useParams();
+  const slug = useLocation().pathname.replace(/^\//, "");
   const unitKey = SLUG_TO_UNIT[slug];
   const [settings, setSettings] = useState<any>(null);
 
