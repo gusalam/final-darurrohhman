@@ -450,6 +450,9 @@ export default function PublicHome() {
               <Row icon={Phone} label="Telepon" value={settings?.telepon ?? "-"} />
               <Row icon={Mail} label="Email" value={settings?.email ?? "-"} />
             </div>
+            <div className="mt-6">
+              <SocialLinks data={settings} />
+            </div>
           </div>
           {settings?.map_embed && (
             <div className="aspect-video overflow-hidden rounded-2xl shadow-soft">
