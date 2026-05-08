@@ -136,6 +136,12 @@ export default function PublicHome() {
         image={settings?.logo_url}
         jsonLd={[breadcrumbLd, navLd]}
       />
+      <IntroLoader
+        enabled={hero?.intro_enabled ?? true}
+        logoUrl={hero?.intro_logo_url}
+        text={hero?.intro_text}
+        durationMs={hero?.intro_duration_ms}
+      />
       <PublicNavbar yayasanName={settings?.nama_yayasan} tagline={settings?.tagline} />
 
       <div className="min-w-0">
