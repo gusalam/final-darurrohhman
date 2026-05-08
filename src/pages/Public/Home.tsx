@@ -280,7 +280,7 @@ export default function PublicHome() {
             <Badge variant="outline" className="border-primary text-primary">Unit Pendidikan</Badge>
             <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">MI · SMP · SMK · Madrasah · TK</h2>
           </Reveal>
-          <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {[
               { key: "mi" as const,       icon: BookOpen,      color: "gradient-primary", desc: settings?.deskripsi_mi,       slug: "mi-an-nuriyah" },
               { key: "smp" as const,      icon: GraduationCap, color: "gradient-sky",     desc: settings?.deskripsi_smp,      slug: "smp-darul-rohman" },
@@ -344,7 +344,7 @@ export default function PublicHome() {
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
               Pilih unit untuk melihat jadwal pelajaran terbaru pada halaman tersendiri.
             </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {([
                 { unit: "mi", label: "MI", desc: "Madrasah Ibtidaiyah An-Nuriyah" },
                 { unit: "smp", label: "SMP", desc: "SMP Darul Rohman" },
