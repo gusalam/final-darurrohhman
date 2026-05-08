@@ -6,7 +6,6 @@ Disallow: /cms
 Disallow: /login
 Disallow: /siswa
 Disallow: /kelas
-Disallow: /jadwal
 Disallow: /absensi
 Disallow: /nilai
 Disallow: /raport

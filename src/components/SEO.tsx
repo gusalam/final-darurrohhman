@@ -3,11 +3,14 @@ import { useEffect } from "react";
 interface SEOProps {
   title?: string;
   description?: string;
+  keywords?: string;
   image?: string;
   canonical?: string;
   type?: "website" | "article";
   noIndex?: boolean;
   jsonLd?: Record<string, any> | Record<string, any>[];
+  googleVerification?: string;
+  bingVerification?: string;
 }
 
 const SITE = "https://yayasandarurrahmanku.web.app";
@@ -33,16 +36,19 @@ function setLink(rel: string, href: string) {
   el.setAttribute("href", href);
 }
 
-export function SEO({ title, description, image, canonical, type = "website", noIndex, jsonLd }: SEOProps) {
+export function SEO({ title, description, keywords, image, canonical, type = "website", noIndex, jsonLd, googleVerification, bingVerification }: SEOProps) {
   useEffect(() => {
     if (title) document.title = title;
     if (description) setMeta("name", "description", description);
+    if (keywords) setMeta("name", "keywords", keywords);
     setMeta("name", "robots", noIndex ? "noindex, nofollow" : "index, follow");
 
     const url = canonical || (typeof window !== "undefined" ? window.location.href : SITE);
     setLink("canonical", url);
 
     setMeta("property", "og:type", type);
+    setMeta("property", "og:site_name", "Yayasan Darur Rohman Morombuh Kwanyar");
+    setMeta("property", "og:locale", "id_ID");
     if (title) setMeta("property", "og:title", title);
     if (description) setMeta("property", "og:description", description);
     setMeta("property", "og:url", url);
@@ -52,6 +58,9 @@ export function SEO({ title, description, image, canonical, type = "website", no
     if (title) setMeta("name", "twitter:title", title);
     if (description) setMeta("name", "twitter:description", description);
     if (image) setMeta("name", "twitter:image", image);
+
+    if (googleVerification) setMeta("name", "google-site-verification", googleVerification);
+    if (bingVerification) setMeta("name", "msvalidate.01", bingVerification);
 
     const scripts: HTMLScriptElement[] = [];
     if (jsonLd) {
@@ -66,7 +75,7 @@ export function SEO({ title, description, image, canonical, type = "website", no
       });
     }
     return () => { scripts.forEach((s) => s.remove()); };
-  }, [title, description, image, canonical, type, noIndex, JSON.stringify(jsonLd)]);
+  }, [title, description, keywords, image, canonical, type, noIndex, googleVerification, bingVerification, JSON.stringify(jsonLd)]);
 
   return null;
 }
