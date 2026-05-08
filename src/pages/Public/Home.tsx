@@ -14,6 +14,9 @@ import { SEO } from "@/components/SEO";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { GaleriSlider } from "@/components/shared/GaleriSlider";
+import { IntroLoader } from "@/components/shared/IntroLoader";
+import { Reveal, Stagger, StaggerItem } from "@/components/shared/Reveal";
+import { motion } from "framer-motion";
 
 const PLACEHOLDER = "/placeholder.png";
 
