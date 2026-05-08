@@ -285,6 +285,54 @@ export type Database = {
           },
         ]
       }
+      hero_settings: {
+        Row: {
+          background_type: string
+          background_url: string | null
+          badge_text: string | null
+          button_primary_link: string | null
+          button_primary_text: string | null
+          button_secondary_link: string | null
+          button_secondary_text: string | null
+          created_at: string
+          description: string | null
+          id: string
+          singleton: boolean
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          background_type?: string
+          background_url?: string | null
+          badge_text?: string | null
+          button_primary_link?: string | null
+          button_primary_text?: string | null
+          button_secondary_link?: string | null
+          button_secondary_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          singleton?: boolean
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          background_type?: string
+          background_url?: string | null
+          badge_text?: string | null
+          button_primary_link?: string | null
+          button_primary_text?: string | null
+          button_secondary_link?: string | null
+          button_secondary_text?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          singleton?: boolean
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       payments: {
         Row: {
           catatan: string | null
