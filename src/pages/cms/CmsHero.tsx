@@ -141,6 +141,18 @@ export default function CmsHero() {
                     {row.intro_logo_url && <img src={row.intro_logo_url} alt="" className="h-12 w-12 rounded object-contain bg-white p-1" />}
                   </div>
                 </Field>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => { setPreviewKey((k) => k + 1); setPreviewIntro(true); }}
+                  className="w-full"
+                >
+                  <Play className="mr-2 h-4 w-4" /> Preview Intro Loading
+                </Button>
+                <p className="text-xs text-muted-foreground">
+                  Tombol ini menjalankan intro sesuai konfigurasi saat ini tanpa perlu menyimpan terlebih dahulu.
+                </p>
               </div>
             </div>
           </CardContent>
