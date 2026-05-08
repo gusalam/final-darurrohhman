@@ -224,8 +224,10 @@ export default function PublicHome() {
                   <img
                     src={b.image_url || PLACEHOLDER}
                     alt={b.title || "Banner"}
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-5 text-white flex flex-col justify-end">
                     {b.title && <p className="font-bold">{b.title}</p>}
