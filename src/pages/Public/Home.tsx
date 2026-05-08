@@ -91,8 +91,8 @@ export default function PublicHome() {
     return m ? m[1] : null;
   })();
 
-  const heroBg = settings?.hero_image_url || banners[0]?.image_url;
-  const heroVideo = settings?.hero_video_url;
+  const heroBgImage = (hero?.background_type === "image" && hero?.background_url) || settings?.hero_image_url || banners[0]?.image_url;
+  const heroBgVideo = (hero?.background_type === "video" && hero?.background_url) || settings?.hero_video_url;
 
   const SITE = "https://yayasandarurrahmanku.web.app";
   const sections = [
