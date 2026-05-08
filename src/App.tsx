@@ -28,8 +28,8 @@ import Yayasan from "./pages/Yayasan";
 import CmsPosts from "./pages/cms/CmsPosts";
 import CmsBanners from "./pages/cms/CmsBanners";
 import CmsPages from "./pages/cms/CmsPages";
-import CmsMedia from "./pages/cms/CmsMedia";
 import CmsSiteSettings from "./pages/cms/CmsSiteSettings";
+import CmsHero from "./pages/cms/CmsHero";
 import CmsGaleri from "./pages/cms/CmsGaleri";
 import NotFound from "./pages/NotFound";
 
