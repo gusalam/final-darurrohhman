@@ -402,33 +402,37 @@ export default function PublicHome() {
             <div className="mx-auto max-w-7xl px-4 md:px-6">
               <Badge variant="outline"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
               <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Berita & Artikel</h2>
-              <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {berita.map((p) => (
-                  <Link key={p.id} to={`/berita/${p.slug}`} className="group block">
-                    <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft transition group-hover:-translate-y-1 group-hover:shadow-lg">
-                      <div className="h-40 bg-muted">
-                        {p.cover_url ? (
-                          <img
-                            src={p.cover_url}
-                            alt={p.title}
-                            onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                            className="h-full w-full object-cover transition group-hover:scale-105"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center text-muted-foreground">
-                            <ImageIcon className="h-8 w-8 opacity-40" />
-                          </div>
-                        )}
-                      </div>
-                      <CardContent className="space-y-2 p-5">
-                        <Badge className="bg-accent text-accent-foreground capitalize">{p.category}</Badge>
-                        <h3 className="font-display text-lg font-bold group-hover:text-primary">{p.title}</h3>
-                        <p className="line-clamp-3 text-sm text-muted-foreground">{p.excerpt ?? p.content}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                  <StaggerItem key={p.id}>
+                    <Link to={`/berita/${p.slug}`} className="group block h-full">
+                      <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft hover-lift">
+                        <div className="h-40 overflow-hidden bg-muted">
+                          {p.cover_url ? (
+                            <img
+                              src={p.cover_url}
+                              alt={p.title}
+                              loading="lazy"
+                              decoding="async"
+                              onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
+                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                          ) : (
+                            <div className="flex h-full w-full items-center justify-center text-muted-foreground">
+                              <ImageIcon className="h-8 w-8 opacity-40" />
+                            </div>
+                          )}
+                        </div>
+                        <CardContent className="space-y-2 p-5">
+                          <Badge className="bg-accent text-accent-foreground capitalize">{p.category}</Badge>
+                          <h3 className="font-display text-lg font-bold transition-colors group-hover:text-primary">{p.title}</h3>
+                          <p className="line-clamp-3 text-sm text-muted-foreground">{p.excerpt ?? p.content}</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </StaggerItem>
                 ))}
-              </div>
+              </Stagger>
             </div>
           </section>
         )}
