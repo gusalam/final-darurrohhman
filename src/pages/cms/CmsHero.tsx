@@ -189,6 +189,18 @@ export default function CmsHero() {
           </CardContent>
         </Card>
       </div>
+
+      {previewIntro && (
+        <IntroLoader
+          key={previewKey}
+          preview
+          enabled
+          logoUrl={row.intro_logo_url}
+          text={row.intro_text}
+          durationMs={row.intro_duration_ms}
+          onClose={() => setPreviewIntro(false)}
+        />
+      )}
     </div>
   );
 }
