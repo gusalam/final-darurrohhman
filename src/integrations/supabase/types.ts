@@ -297,6 +297,10 @@ export type Database = {
           created_at: string
           description: string | null
           id: string
+          intro_duration_ms: number
+          intro_enabled: boolean
+          intro_logo_url: string | null
+          intro_text: string | null
           singleton: boolean
           title: string | null
           updated_at: string
@@ -312,6 +316,10 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
+          intro_duration_ms?: number
+          intro_enabled?: boolean
+          intro_logo_url?: string | null
+          intro_text?: string | null
           singleton?: boolean
           title?: string | null
           updated_at?: string
@@ -327,6 +335,10 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
+          intro_duration_ms?: number
+          intro_enabled?: boolean
+          intro_logo_url?: string | null
+          intro_text?: string | null
           singleton?: boolean
           title?: string | null
           updated_at?: string
