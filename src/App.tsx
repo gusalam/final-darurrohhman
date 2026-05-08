@@ -55,6 +55,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<PublicHome />} />
                 <Route path="/berita/:slug" element={<PostDetail />} />
+                <Route path="/jadwal/:unit" element={<JadwalUnit />} />
                 <Route path="/login" element={<Login />} />
 
 
