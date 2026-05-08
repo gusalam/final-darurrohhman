@@ -107,6 +107,39 @@ export default function CmsHero() {
                 </div>
               </div>
             </div>
+
+            <div className="border-t border-border pt-4">
+              <h3 className="mb-3 font-display text-base font-bold">Intro Loading Screen</h3>
+              <div className="space-y-3">
+                <label className="flex cursor-pointer items-center gap-2">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-border accent-primary"
+                    checked={row.intro_enabled ?? true}
+                    onChange={(e) => setRow({ ...row, intro_enabled: e.target.checked })}
+                  />
+                  <span className="text-sm font-medium">Aktifkan intro loading screen</span>
+                </label>
+                <Field label="Text Intro">
+                  <Input value={row.intro_text ?? ""} onChange={(e) => setRow({ ...row, intro_text: e.target.value })} placeholder="Yayasan Darur Rohman Morombuh" />
+                </Field>
+                <Field label="Durasi (milidetik) — 800 sampai 6000">
+                  <Input type="number" min={800} max={6000} step={100}
+                    value={row.intro_duration_ms ?? 2500}
+                    onChange={(e) => setRow({ ...row, intro_duration_ms: Number(e.target.value) })} />
+                </Field>
+                <Field label="Logo Intro (opsional, fallback ke logo yayasan)">
+                  <div className="flex items-center gap-2">
+                    <Input type="file" accept="image/*"
+                      onChange={async (e) => {
+                        const f = e.target.files?.[0]; if (!f) return;
+                        try { const { publicUrl } = await uploadFile("hero", f); setRow({ ...row, intro_logo_url: publicUrl }); toast.success("Logo terupload"); } catch (err: any) { toast.error(err.message); }
+                      }} />
+                    {row.intro_logo_url && <img src={row.intro_logo_url} alt="" className="h-12 w-12 rounded object-contain bg-white p-1" />}
+                  </div>
+                </Field>
+              </div>
+            </div>
           </CardContent>
         </Card>
 
