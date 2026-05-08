@@ -13,6 +13,7 @@ import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { GaleriSlider } from "@/components/shared/GaleriSlider";
 
 const PLACEHOLDER = "/placeholder.png";
 
