@@ -91,7 +91,8 @@ export function PublicNavbar({ yayasanName, tagline }: Props) {
                     <img src={logo} alt="Logo" className="h-full w-full object-contain" />
                   </div>
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-bold">{yayasanName ?? "Yayasan Darul Rohman"}</p>
+                    <p dir="rtl" lang="ar" className="truncate text-sm leading-tight text-secondary">مؤسسة دار الرحمن مورمبوح</p>
+                    <p className="truncate text-xs font-bold">{yayasanName ?? "Yayasan Darur Rohman Morombuh"}</p>
                     {tagline && <p className="truncate text-[11px] text-white/70">{tagline}</p>}
                   </div>
                 </div>
