@@ -206,7 +206,7 @@ export default function PublicHome() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto max-w-6xl px-4 py-16 md:py-24 md:px-8"
+            className="relative mx-auto max-w-screen-2xl px-4 py-16 md:py-24 lg:py-32 md:px-8 lg:px-12"
           >
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
               <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
@@ -217,7 +217,7 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="font-display text-3xl font-bold md:text-5xl"
+              className="max-w-4xl font-display text-3xl font-bold leading-tight md:text-5xl lg:text-6xl xl:text-7xl"
             >
               {hero?.title ?? settings?.hero_title ?? "Membentuk Generasi Qur'ani, Cerdas & Berakhlak Mulia"}
             </motion.h1>
@@ -225,7 +225,7 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-5 max-w-xl text-base text-white/90 md:text-lg"
+              className="mt-5 max-w-2xl text-base text-white/90 md:text-lg lg:text-xl"
             >
               {hero?.description ?? settings?.hero_subtitle ?? settings?.deskripsi ?? "Yayasan Darul Rohman menyelenggarakan pendidikan Islam terpadu MI, SMP, SMK, Madrasah Diniyah, dan TK."}
             </motion.p>
@@ -252,7 +252,7 @@ export default function PublicHome() {
       <ErrorBoundary silent label="Banners">
         {banners.length > 1 && (
           <section className="bg-muted/40 py-10">
-            <div className="mx-auto grid max-w-7xl gap-4 px-4 md:grid-cols-2 md:px-6">
+            <div className="mx-auto grid max-w-screen-2xl gap-4 px-4 md:grid-cols-2 md:px-6">
               {banners.slice(1).map((b) => (
                 <a key={b.id} href={b.cta_url ?? "#"} className="group relative block h-44 overflow-hidden rounded-2xl bg-muted shadow-soft">
                   <img
@@ -274,13 +274,13 @@ export default function PublicHome() {
         )}
       </ErrorBoundary>
 
-      <section id="unit" className="bg-muted/40 py-14">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <section id="unit" className="bg-muted/40 py-14 lg:py-20">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
           <Reveal className="text-center">
             <Badge variant="outline" className="border-primary text-primary">Unit Pendidikan</Badge>
             <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">MI · SMP · SMK · Madrasah · TK</h2>
           </Reveal>
-          <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {[
               { key: "mi" as const,       icon: BookOpen,      color: "gradient-primary", desc: settings?.deskripsi_mi,       slug: "mi-an-nuriyah" },
               { key: "smp" as const,      icon: GraduationCap, color: "gradient-sky",     desc: settings?.deskripsi_smp,      slug: "smp-darul-rohman" },
@@ -315,7 +315,7 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section id="akademik" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <section id="akademik" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
         <Badge variant="outline" className="border-primary text-primary">Akademik</Badge>
         <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Informasi Akademik</h2>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
@@ -337,14 +337,14 @@ export default function PublicHome() {
       </section>
 
       <ErrorBoundary silent label="Jadwal">
-        <section id="jadwal" className="bg-card py-14">
-          <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <section id="jadwal" className="bg-card py-14 lg:py-20">
+          <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
             <Badge variant="outline" className="border-primary text-primary"><Calendar className="mr-1 h-3 w-3" /> Jadwal</Badge>
             <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Jadwal Pelajaran (Real-time)</h2>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
               Pilih unit untuk melihat jadwal pelajaran terbaru pada halaman tersendiri.
             </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {([
                 { unit: "mi", label: "MI", desc: "Madrasah Ibtidaiyah An-Nuriyah" },
                 { unit: "smp", label: "SMP", desc: "SMP Darul Rohman" },
@@ -369,8 +369,8 @@ export default function PublicHome() {
         </section>
       </ErrorBoundary>
 
-      <section id="ppdb" className="bg-muted/40 py-14">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
+      <section id="ppdb" className="bg-muted/40 py-14 lg:py-20">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
           <div className="rounded-3xl gradient-primary p-8 text-primary-foreground shadow-md-soft md:p-12">
             <Badge className="border-0 bg-secondary text-secondary-foreground">PPDB</Badge>
             <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">Penerimaan Peserta Didik Baru</h2>
@@ -384,7 +384,7 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Pengumuman">
         {pengumuman.length > 0 && (
-          <section id="pengumuman" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+          <section id="pengumuman" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
             <Badge variant="outline"><Megaphone className="mr-1 h-3 w-3" /> Pengumuman</Badge>
             <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Pengumuman Terbaru</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -401,11 +401,11 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Berita">
         {berita.length > 0 && (
-          <section id="berita" className="bg-muted/40 py-14">
-            <div className="mx-auto max-w-7xl px-4 md:px-6">
+          <section id="berita" className="bg-muted/40 py-14 lg:py-20">
+            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
               <Badge variant="outline"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
               <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Berita & Artikel</h2>
-              <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {berita.map((p) => (
                   <StaggerItem key={p.id}>
                     <Link to={`/berita/${p.slug}`} className="group block h-full">
@@ -443,7 +443,7 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Galeri">
         {gallery.length > 0 && (
-          <section id="galeri" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+          <section id="galeri" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
             <h2 className="font-display text-2xl font-bold md:text-3xl">Galeri</h2>
 
             {/* Mobile: auto-sliding carousel */}
@@ -452,7 +452,7 @@ export default function PublicHome() {
             </div>
 
             {/* Desktop: grid */}
-            <div className="mt-6 hidden grid-cols-3 gap-3 md:grid md:grid-cols-4">
+            <div className="mt-6 hidden grid-cols-3 gap-3 md:grid md:grid-cols-4 xl:grid-cols-6">
               {gallery.map((u) => (
                 <img
                   key={u}
@@ -471,7 +471,7 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Video">
         {youtubeId && (
-          <section id="video" className="bg-muted/40 py-14">
+          <section id="video" className="bg-muted/40 py-14 lg:py-20">
             <div className="mx-auto max-w-5xl px-4 md:px-6">
               <h2 className="font-display text-2xl font-bold md:text-3xl">Video Profil</h2>
               <div className="mt-6 aspect-video overflow-hidden rounded-2xl shadow-soft">
@@ -482,7 +482,7 @@ export default function PublicHome() {
         )}
       </ErrorBoundary>
 
-      <section id="kontak" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <section id="kontak" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-2xl font-bold md:text-3xl">Kontak Yayasan</h2>
@@ -511,7 +511,7 @@ export default function PublicHome() {
       </section>
 
       <footer className="border-t border-border bg-card">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted-foreground md:flex-row md:px-6">
+        <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted-foreground md:flex-row md:px-6">
           <p>© {new Date().getFullYear()} {settings?.nama_yayasan ?? "Yayasan Darul Rohman"}.</p>
           <div className="flex flex-col items-center gap-2 md:flex-row md:gap-4">
             <p>Sistem Terpadu Pendidikan v1.0</p>

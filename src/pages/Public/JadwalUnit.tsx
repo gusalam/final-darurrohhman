@@ -39,7 +39,7 @@ export default function JadwalUnit() {
       <PublicNavbar />
 
       <section className="bg-card border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-14">
+        <div className="mx-auto max-w-screen-2xl px-4 py-10 md:px-6 md:py-14">
           <Link to="/#jadwal">
             <Button variant="ghost" size="sm" className="mb-4">
               <ArrowLeft className="mr-2 h-4 w-4" /> Kembali
@@ -55,7 +55,7 @@ export default function JadwalUnit() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-14">
+      <section className="mx-auto max-w-screen-2xl px-4 py-10 md:px-6 md:py-14">
         <Reveal>
           {loading ? (
             <p className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground">Memuat jadwal…</p>

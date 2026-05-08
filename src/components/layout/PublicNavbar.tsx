@@ -39,7 +39,7 @@ export function PublicNavbar({ yayasanName, tagline }: Props) {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-sidebar text-white shadow-soft">
-      <div className="mx-auto flex h-[70px] max-w-7xl items-center gap-6 px-4 md:px-6">
+      <div className="mx-auto flex h-[70px] max-w-screen-2xl items-center gap-6 px-4 md:px-6 lg:px-10">
         {/* Logo + nama yayasan */}
         <Link to="/" className="flex min-w-0 flex-1 items-center gap-3 md:flex-initial md:shrink-0">
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white p-1 shadow-soft">
