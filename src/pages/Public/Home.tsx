@@ -13,6 +13,7 @@ import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { GaleriSlider } from "@/components/shared/GaleriSlider";
 
 const PLACEHOLDER = "/placeholder.png";
 
@@ -402,7 +403,14 @@ export default function PublicHome() {
         {gallery.length > 0 && (
           <section id="galeri" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
             <h2 className="font-display text-2xl font-bold md:text-3xl">Galeri</h2>
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+
+            {/* Mobile: auto-sliding carousel */}
+            <div className="mt-6 md:hidden">
+              <GaleriSlider images={gallery} />
+            </div>
+
+            {/* Desktop: grid */}
+            <div className="mt-6 hidden grid-cols-3 gap-3 md:grid md:grid-cols-4">
               {gallery.map((u) => (
                 <img
                   key={u}
