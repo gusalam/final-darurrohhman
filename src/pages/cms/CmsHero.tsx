@@ -35,6 +35,8 @@ export default function CmsHero() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [previewIntro, setPreviewIntro] = useState(false);
+  const [previewKey, setPreviewKey] = useState(0);
 
   const load = async () => {
     setLoading(true);
