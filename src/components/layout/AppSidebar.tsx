@@ -30,11 +30,11 @@ const manajemenItems: NavItem[] = [
   { title: "PPDB", url: "/ppdb", icon: UserPlus, roles: ALL },
 ];
 const cmsItems: NavItem[] = [
+  { title: "Hero Settings", url: "/cms/hero", icon: Sparkles, roles: ["super_admin"] },
   { title: "Posts", url: "/cms/posts", icon: Newspaper, roles: ["super_admin"] },
   { title: "Pages", url: "/cms/pages", icon: FilePen, roles: ["super_admin"] },
   { title: "Banner / Hero", url: "/cms/banners", icon: ImageIcon, roles: ["super_admin"] },
   { title: "Galeri", url: "/cms/galeri", icon: ImagePlus, roles: ["super_admin"] },
-  { title: "Media Library", url: "/cms/media", icon: Library, roles: ["super_admin"] },
   { title: "Site Settings", url: "/cms/settings", icon: Settings, roles: ["super_admin"] },
 ];
 
