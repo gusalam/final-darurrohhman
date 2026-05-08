@@ -36,6 +36,7 @@ function normalizeMapEmbed(input: string): string {
 
 export default function PublicHome() {
   const [settings, setSettings] = useState<any>(null);
+  const [hero, setHero] = useState<any>(null);
   const [showJadwal, setShowJadwal] = useState(false);
   const [storageGallery, setStorageGallery] = useState<string[]>([]);
   const { data: banners } = useSupabaseTable<any>("cms_banners", { filters: { is_active: true }, orderBy: { column: "sort_order", ascending: true } });
@@ -44,10 +45,13 @@ export default function PublicHome() {
   const { data: schedules } = useSupabaseTable<any>("schedules", { select: "*, classes(nama, unit), subjects(nama), teachers(nama)", orderBy: { column: "jam_mulai", ascending: true } });
 
   useEffect(() => {
-    supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
-    const ch = supabase.channel("rt-settings").on("postgres_changes", { event: "*", schema: "public", table: "site_settings" }, () => {
-      supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
-    }).subscribe();
+    const loadSettings = () => supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
+    const loadHero = () => supabase.from("hero_settings" as any).select("*").limit(1).maybeSingle().then(({ data }) => setHero(data));
+    loadSettings(); loadHero();
+    const ch = supabase.channel("rt-public")
+      .on("postgres_changes", { event: "*", schema: "public", table: "site_settings" }, loadSettings)
+      .on("postgres_changes", { event: "*", schema: "public", table: "hero_settings" }, loadHero)
+      .subscribe();
     return () => { supabase.removeChannel(ch); };
   }, []);
 
