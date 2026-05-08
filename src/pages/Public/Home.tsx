@@ -11,8 +11,6 @@ import { GraduationCap, BookOpen, Briefcase, MapPin, Phone, Mail, Sparkles, Arro
 import { UNITS } from "@/lib/units";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { GaleriSlider } from "@/components/shared/GaleriSlider";
 import { IntroLoader } from "@/components/shared/IntroLoader";
 import { Reveal, Stagger, StaggerItem } from "@/components/shared/Reveal";
