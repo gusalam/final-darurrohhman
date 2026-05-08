@@ -252,7 +252,7 @@ export default function PublicHome() {
       <ErrorBoundary silent label="Banners">
         {banners.length > 1 && (
           <section className="bg-muted/40 py-10">
-            <div className="mx-auto grid max-w-7xl gap-4 px-4 md:grid-cols-2 md:px-6">
+            <div className="mx-auto grid max-w-screen-2xl gap-4 px-4 md:grid-cols-2 md:px-6">
               {banners.slice(1).map((b) => (
                 <a key={b.id} href={b.cta_url ?? "#"} className="group relative block h-44 overflow-hidden rounded-2xl bg-muted shadow-soft">
                   <img
@@ -275,7 +275,7 @@ export default function PublicHome() {
       </ErrorBoundary>
 
       <section id="unit" className="bg-muted/40 py-14">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
           <Reveal className="text-center">
             <Badge variant="outline" className="border-primary text-primary">Unit Pendidikan</Badge>
             <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">MI · SMP · SMK · Madrasah · TK</h2>
@@ -315,7 +315,7 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section id="akademik" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <section id="akademik" className="mx-auto max-w-screen-2xl px-4 py-14 md:px-6">
         <Badge variant="outline" className="border-primary text-primary">Akademik</Badge>
         <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Informasi Akademik</h2>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
@@ -338,7 +338,7 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Jadwal">
         <section id="jadwal" className="bg-card py-14">
-          <div className="mx-auto max-w-7xl px-4 md:px-6">
+          <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
             <Badge variant="outline" className="border-primary text-primary"><Calendar className="mr-1 h-3 w-3" /> Jadwal</Badge>
             <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Jadwal Pelajaran (Real-time)</h2>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
@@ -370,7 +370,7 @@ export default function PublicHome() {
       </ErrorBoundary>
 
       <section id="ppdb" className="bg-muted/40 py-14">
-        <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
           <div className="rounded-3xl gradient-primary p-8 text-primary-foreground shadow-md-soft md:p-12">
             <Badge className="border-0 bg-secondary text-secondary-foreground">PPDB</Badge>
             <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">Penerimaan Peserta Didik Baru</h2>
@@ -384,7 +384,7 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Pengumuman">
         {pengumuman.length > 0 && (
-          <section id="pengumuman" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+          <section id="pengumuman" className="mx-auto max-w-screen-2xl px-4 py-14 md:px-6">
             <Badge variant="outline"><Megaphone className="mr-1 h-3 w-3" /> Pengumuman</Badge>
             <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Pengumuman Terbaru</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-3">
@@ -402,7 +402,7 @@ export default function PublicHome() {
       <ErrorBoundary silent label="Berita">
         {berita.length > 0 && (
           <section id="berita" className="bg-muted/40 py-14">
-            <div className="mx-auto max-w-7xl px-4 md:px-6">
+            <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
               <Badge variant="outline"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
               <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Berita & Artikel</h2>
               <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -443,7 +443,7 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Galeri">
         {gallery.length > 0 && (
-          <section id="galeri" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+          <section id="galeri" className="mx-auto max-w-screen-2xl px-4 py-14 md:px-6">
             <h2 className="font-display text-2xl font-bold md:text-3xl">Galeri</h2>
 
             {/* Mobile: auto-sliding carousel */}
@@ -482,7 +482,7 @@ export default function PublicHome() {
         )}
       </ErrorBoundary>
 
-      <section id="kontak" className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+      <section id="kontak" className="mx-auto max-w-screen-2xl px-4 py-14 md:px-6">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-2xl font-bold md:text-3xl">Kontak Yayasan</h2>
@@ -511,7 +511,7 @@ export default function PublicHome() {
       </section>
 
       <footer className="border-t border-border bg-card">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted-foreground md:flex-row md:px-6">
+        <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted-foreground md:flex-row md:px-6">
           <p>© {new Date().getFullYear()} {settings?.nama_yayasan ?? "Yayasan Darul Rohman"}.</p>
           <div className="flex flex-col items-center gap-2 md:flex-row md:gap-4">
             <p>Sistem Terpadu Pendidikan v1.0</p>
