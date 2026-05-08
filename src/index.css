@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  img { content-visibility: auto; }
+}
+
+@layer utilities {
+  .hover-lift { @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-md-soft; }
+  .hover-glow { @apply transition-shadow duration-300 hover:shadow-[0_0_24px_-4px_hsl(var(--secondary)/0.55)]; }
+}
+
 /* Yayasan Darul Rohman Design System
    Solid, high-contrast, clean. No heavy glassmorphism. HSL only. */
 
