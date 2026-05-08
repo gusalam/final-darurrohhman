@@ -40,14 +40,19 @@ export function PublicNavbar({ yayasanName, tagline }: Props) {
   return (
     <header className="sticky top-0 z-40 w-full bg-sidebar text-white shadow-soft">
       <div className="mx-auto flex h-[70px] max-w-7xl items-center gap-6 px-4 md:px-6">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 shrink-0">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white p-1">
+        {/* Logo + nama yayasan */}
+        <Link to="/" className="flex min-w-0 flex-1 items-center gap-3 md:flex-initial md:shrink-0">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white p-1 shadow-soft">
             <img src={logo} alt="Logo" className="h-full w-full object-contain" />
           </div>
-          <div className="min-w-0 hidden sm:block">
-            <p className="truncate text-sm font-bold leading-tight">{yayasanName ?? "Yayasan Darul Rohman"}</p>
-            {tagline && <p className="truncate text-[11px] text-white/70">{tagline}</p>}
+          <div className="min-w-0 text-left">
+            <p dir="rtl" lang="ar" className="truncate font-arabic text-[15px] leading-tight text-secondary md:text-base">
+              مؤسسة دار الرحمن مورمبوح
+            </p>
+            <p className="truncate text-[11px] font-bold leading-tight text-white md:text-xs">
+              {yayasanName ?? "Yayasan Darur Rohman Morombuh"}
+            </p>
+            {tagline && <p className="truncate text-[10px] text-white/70">{tagline}</p>}
           </div>
         </Link>
 
@@ -86,7 +91,8 @@ export function PublicNavbar({ yayasanName, tagline }: Props) {
                     <img src={logo} alt="Logo" className="h-full w-full object-contain" />
                   </div>
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-bold">{yayasanName ?? "Yayasan Darul Rohman"}</p>
+                    <p dir="rtl" lang="ar" className="truncate text-sm leading-tight text-secondary">مؤسسة دار الرحمن مورمبوح</p>
+                    <p className="truncate text-xs font-bold">{yayasanName ?? "Yayasan Darur Rohman Morombuh"}</p>
                     {tagline && <p className="truncate text-[11px] text-white/70">{tagline}</p>}
                   </div>
                 </div>

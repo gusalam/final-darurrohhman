@@ -36,6 +36,7 @@ function normalizeMapEmbed(input: string): string {
 
 export default function PublicHome() {
   const [settings, setSettings] = useState<any>(null);
+  const [hero, setHero] = useState<any>(null);
   const [showJadwal, setShowJadwal] = useState(false);
   const [storageGallery, setStorageGallery] = useState<string[]>([]);
   const { data: banners } = useSupabaseTable<any>("cms_banners", { filters: { is_active: true }, orderBy: { column: "sort_order", ascending: true } });
@@ -44,10 +45,13 @@ export default function PublicHome() {
   const { data: schedules } = useSupabaseTable<any>("schedules", { select: "*, classes(nama, unit), subjects(nama), teachers(nama)", orderBy: { column: "jam_mulai", ascending: true } });
 
   useEffect(() => {
-    supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
-    const ch = supabase.channel("rt-settings").on("postgres_changes", { event: "*", schema: "public", table: "site_settings" }, () => {
-      supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
-    }).subscribe();
+    const loadSettings = () => supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
+    const loadHero = () => supabase.from("hero_settings" as any).select("*").limit(1).maybeSingle().then(({ data }) => setHero(data));
+    loadSettings(); loadHero();
+    const ch = supabase.channel("rt-public")
+      .on("postgres_changes", { event: "*", schema: "public", table: "site_settings" }, loadSettings)
+      .on("postgres_changes", { event: "*", schema: "public", table: "hero_settings" }, loadHero)
+      .subscribe();
     return () => { supabase.removeChannel(ch); };
   }, []);
 
@@ -87,8 +91,8 @@ export default function PublicHome() {
     return m ? m[1] : null;
   })();
 
-  const heroBg = settings?.hero_image_url || banners[0]?.image_url;
-  const heroVideo = settings?.hero_video_url;
+  const heroBgImage = (hero?.background_type === "image" && hero?.background_url) || settings?.hero_image_url || banners[0]?.image_url;
+  const heroBgVideo = (hero?.background_type === "video" && hero?.background_url) || settings?.hero_video_url;
 
   const SITE = "https://yayasandarurrahmanku.web.app";
   const sections = [
@@ -133,29 +137,48 @@ export default function PublicHome() {
       <div className="min-w-0">
 
         <section id="tentang" className="relative overflow-hidden gradient-hero text-white">
-          {heroVideo ? (
+          {heroBgVideo ? (
             <>
               <video
-                src={heroVideo}
+                src={heroBgVideo}
                 autoPlay
                 muted
                 loop
                 playsInline
-                poster={heroBg || undefined}
+                poster={heroBgImage || undefined}
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-black/50" />
+              <div className="absolute inset-0 bg-black/55" />
             </>
           ) : (
-            heroBg && <div className="absolute inset-0 opacity-30" style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+            heroBgImage && (
+              <>
+                <div className="absolute inset-0" style={{ backgroundImage: `url(${heroBgImage})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+                <div className="absolute inset-0 bg-black/55" />
+              </>
+            )
           )}
           <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24 md:px-8">
-            <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground"><Sparkles className="mr-1 h-3 w-3" /> Sistem Terpadu Pendidikan</Badge>
-            <h1 className="font-display text-3xl font-bold md:text-5xl">{settings?.hero_title ?? "Membentuk Generasi Qur'ani, Cerdas & Berakhlak Mulia"}</h1>
-            <p className="mt-5 max-w-xl text-base text-white/90 md:text-lg">{settings?.hero_subtitle ?? settings?.deskripsi ?? "Yayasan Darul Rohman menyelenggarakan pendidikan Islam terpadu MI, SMP, SMK, Madrasah Diniyah, dan TK."}</p>
+            <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
+              <Sparkles className="mr-1 h-3 w-3" /> {hero?.badge_text ?? "Sistem Terpadu Pendidikan"}
+            </Badge>
+            <h1 className="font-display text-3xl font-bold md:text-5xl">
+              {hero?.title ?? settings?.hero_title ?? "Membentuk Generasi Qur'ani, Cerdas & Berakhlak Mulia"}
+            </h1>
+            <p className="mt-5 max-w-xl text-base text-white/90 md:text-lg">
+              {hero?.description ?? settings?.hero_subtitle ?? settings?.deskripsi ?? "Yayasan Darul Rohman menyelenggarakan pendidikan Islam terpadu MI, SMP, SMK, Madrasah Diniyah, dan TK."}
+            </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#unit"><Button size="lg" className="bg-secondary text-secondary-foreground">Jelajahi Unit <ArrowRight className="ml-2 h-4 w-4" /></Button></a>
-              <a href="#kontak"><Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">Hubungi Kami</Button></a>
+              <a href={hero?.button_primary_link ?? "#unit"}>
+                <Button size="lg" className="bg-secondary text-secondary-foreground">
+                  {hero?.button_primary_text ?? "Jelajahi Unit"} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
+              <a href={hero?.button_secondary_link ?? "#kontak"}>
+                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
+                  {hero?.button_secondary_text ?? "Hubungi Kami"}
+                </Button>
+              </a>
             </div>
           </div>
         </section>
