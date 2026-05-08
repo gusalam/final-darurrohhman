@@ -123,15 +123,52 @@ export default function PublicHome() {
       url: `${SITE}/#${s.id}`,
     })),
   };
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh Kwanyar",
+    url: SITE + "/",
+    inLanguage: "id-ID",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SITE}/?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+  const orgLd = {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "EducationalOrganization"],
+    name: "Yayasan Darur Rohman Morombuh Kwanyar",
+    alternateName: ["Yayasan Darurrahman", "Ponpes Darurrahman Morombuh", "Yayasan Darul Rohman"],
+    url: SITE + "/",
+    logo: settings?.logo_url || `${SITE}/favicon.png`,
+    email: settings?.email,
+    telephone: settings?.telepon,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: settings?.alamat,
+      addressLocality: "Morombuh",
+      addressRegion: "Kwanyar, Bangkalan, Jawa Timur",
+      addressCountry: "ID",
+    },
+    sameAs: [
+      settings?.social_facebook, settings?.social_instagram, settings?.social_tiktok,
+      settings?.social_youtube, settings?.social_twitter, settings?.social_telegram,
+      settings?.social_linkedin, settings?.social_threads,
+    ].filter(Boolean),
+  };
 
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
       <SEO
-        title={`${settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh Kwanyar"} — MI An-Nuriyah, SMP, Madrasah Diniyah, TK`}
-        description={settings?.deskripsi ?? "Website resmi Yayasan Darur Rohman Morombuh Kwanyar: MI An-Nuriyah, SMP Darul Rohman, SMK Darul Rohman, Madrasah Diniyah Al Arsyadiyah, dan TK PGRI 02 Roudlotul Huffadz."}
+        title={`${settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh"} | MI, SMP, SMK, Madrasah & TK`}
+        description={settings?.deskripsi ?? "Website resmi Yayasan Darur Rohman Morombuh Kwanyar Bangkalan. Terdiri dari MI An-Nuriyah, SMP Darul Rohman, SMK Darul Rohman, Madrasah Diniyah Al Arsyadiyah, dan TK PGRI 02 Roudlotul Huffadz."}
+        keywords="yayasan darur rohman morombuh, yayasan darurrohhman morombuh, ponpes darurrahman morombuh kwanyar, mi an-nuriyah, madrasah ibtidaiyah an-nuriyah, smp darul rohman, smk darul rohman, madrasah diniyah al arsyadiyah, tk pgri 02 roudlotul huffadz, sekolah islam morombuh, bangkalan madura"
         canonical={SITE + "/"}
-        image={settings?.logo_url}
-        jsonLd={[breadcrumbLd, navLd]}
+        image={settings?.logo_url || `${SITE}/favicon.png`}
+        googleVerification={settings?.google_site_verification}
+        bingVerification={settings?.bing_site_verification}
+        jsonLd={[breadcrumbLd, navLd, websiteLd, orgLd]}
       />
       <IntroLoader
         enabled={hero?.intro_enabled ?? true}
