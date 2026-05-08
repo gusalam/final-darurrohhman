@@ -23,6 +23,10 @@ type HeroRow = {
   button_secondary_link?: string | null;
   background_type?: string | null;
   background_url?: string | null;
+  intro_enabled?: boolean | null;
+  intro_logo_url?: string | null;
+  intro_text?: string | null;
+  intro_duration_ms?: number | null;
 };
 
 export default function CmsHero() {
