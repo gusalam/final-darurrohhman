@@ -458,7 +458,17 @@ export default function PublicHome() {
       <footer className="border-t border-border bg-card">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-muted-foreground md:flex-row md:px-6">
           <p>© {new Date().getFullYear()} {settings?.nama_yayasan ?? "Yayasan Darul Rohman"}.</p>
-          <p>Sistem Terpadu Pendidikan v1.0</p>
+          <div className="flex flex-col items-center gap-2 md:flex-row md:gap-4">
+            <p>Sistem Terpadu Pendidikan v1.0</p>
+            <a
+              href="https://tretandevelopment.web.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary to-secondary px-4 py-1.5 text-xs font-bold text-primary-foreground shadow-soft transition hover:opacity-90"
+            >
+              <Sparkles className="h-3 w-3" /> Developed by Tretan Development
+            </a>
+          </div>
         </div>
       </footer>
       </div>
