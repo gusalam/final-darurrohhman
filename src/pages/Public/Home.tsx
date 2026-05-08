@@ -12,6 +12,7 @@ import { UNITS } from "@/lib/units";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
 import { GaleriSlider } from "@/components/shared/GaleriSlider";
+import { SocialLinks } from "@/components/shared/SocialLinks";
 import { IntroLoader } from "@/components/shared/IntroLoader";
 import { Reveal, Stagger, StaggerItem } from "@/components/shared/Reveal";
 import { motion } from "framer-motion";
