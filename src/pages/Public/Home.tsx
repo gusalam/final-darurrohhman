@@ -405,7 +405,7 @@ export default function PublicHome() {
             <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
               <Badge variant="outline"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
               <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Berita & Artikel</h2>
-              <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {berita.map((p) => (
                   <StaggerItem key={p.id}>
                     <Link to={`/berita/${p.slug}`} className="group block h-full">
@@ -452,7 +452,7 @@ export default function PublicHome() {
             </div>
 
             {/* Desktop: grid */}
-            <div className="mt-6 hidden grid-cols-3 gap-3 md:grid md:grid-cols-4">
+            <div className="mt-6 hidden grid-cols-3 gap-3 md:grid md:grid-cols-4 xl:grid-cols-6">
               {gallery.map((u) => (
                 <img
                   key={u}
