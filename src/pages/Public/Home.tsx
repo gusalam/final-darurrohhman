@@ -455,8 +455,10 @@ export default function PublicHome() {
                   key={u}
                   src={u}
                   alt="Galeri"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                  className="aspect-square rounded-xl bg-muted object-cover"
+                  className="aspect-square rounded-xl bg-muted object-cover transition-transform duration-500 hover:scale-105"
                 />
               ))}
             </div>
