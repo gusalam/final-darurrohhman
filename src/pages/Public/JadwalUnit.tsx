@@ -30,7 +30,12 @@ export default function JadwalUnit() {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO title={`Jadwal Pelajaran ${meta.label} — Yayasan Darul Rohman`} description={`Jadwal pelajaran real-time untuk ${meta.full}.`} />
+      <SEO
+        title={`Jadwal Pelajaran ${meta.label} — ${meta.full}`}
+        description={`Jadwal pelajaran real-time untuk ${meta.full} di Yayasan Darur Rohman Morombuh Kwanyar.`}
+        canonical={`https://yayasandarurrahmanku.web.app/jadwal/${unit}`}
+        keywords={`jadwal pelajaran ${meta.label.toLowerCase()}, ${meta.full.toLowerCase()}, yayasan darur rohman morombuh`}
+      />
       <PublicNavbar />
 
       <section className="bg-card border-b border-border">
