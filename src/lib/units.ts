@@ -1,10 +1,10 @@
 import type { Database } from "@/integrations/supabase/types";
 import logoYayasan from "@/assets/logo-yayasan.png";
-import logoMI from "@/assets/logo-mi.jpg";
-import logoSMP from "@/assets/logo-smp.jpg";
-import logoSMK from "@/assets/logo-smk.jpg";
-import logoMadrasah from "@/assets/logo-madrasah.jpg";
-import logoTK from "@/assets/logo-tk.jpg";
+import logoMI from "@/assets/logo-mi.png";
+import logoSMP from "@/assets/logo-smp.png";
+import logoSMK from "@/assets/logo-smk.png";
+import logoMadrasah from "@/assets/logo-madrasah.png";
+import logoTK from "@/assets/logo-tk.png";
 
 export type UnitKey = Database["public"]["Enums"]["unit_key"];
 export type Role = Database["public"]["Enums"]["app_role"];
