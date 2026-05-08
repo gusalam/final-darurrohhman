@@ -98,7 +98,7 @@ export default function UnitPage() {
       <PublicNavbar yayasanName={settings?.nama_yayasan} tagline={settings?.tagline} />
 
       <section className="border-b border-border bg-card">
-        <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
+        <div className="mx-auto max-w-screen-2xl px-4 py-10 md:px-10 md:py-14 lg:py-20">
           <Link to="/#unit"><Button variant="ghost" size="sm" className="mb-4"><ArrowLeft className="mr-2 h-4 w-4" /> Kembali</Button></Link>
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
             <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-soft md:h-32 md:w-32">
@@ -117,7 +117,7 @@ export default function UnitPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
+      <section className="mx-auto max-w-screen-2xl px-4 py-10 md:px-10 md:py-14 lg:py-20">
         <Reveal>
           <h2 className="font-display text-xl font-bold md:text-2xl">Tentang {unit.name}</h2>
           <Card className="mt-4 rounded-2xl border-0 shadow-soft">
