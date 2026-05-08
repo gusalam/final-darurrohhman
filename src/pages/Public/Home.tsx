@@ -168,29 +168,51 @@ export default function PublicHome() {
               </>
             )
           )}
-          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24 md:px-8">
-            <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
-              <Sparkles className="mr-1 h-3 w-3" /> {hero?.badge_text ?? "Sistem Terpadu Pendidikan"}
-            </Badge>
-            <h1 className="font-display text-3xl font-bold md:text-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto max-w-6xl px-4 py-16 md:py-24 md:px-8"
+          >
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+              <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
+                <Sparkles className="mr-1 h-3 w-3" /> {hero?.badge_text ?? "Sistem Terpadu Pendidikan"}
+              </Badge>
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="font-display text-3xl font-bold md:text-5xl"
+            >
               {hero?.title ?? settings?.hero_title ?? "Membentuk Generasi Qur'ani, Cerdas & Berakhlak Mulia"}
-            </h1>
-            <p className="mt-5 max-w-xl text-base text-white/90 md:text-lg">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.6 }}
+              className="mt-5 max-w-xl text-base text-white/90 md:text-lg"
+            >
               {hero?.description ?? settings?.hero_subtitle ?? settings?.deskripsi ?? "Yayasan Darul Rohman menyelenggarakan pendidikan Islam terpadu MI, SMP, SMK, Madrasah Diniyah, dan TK."}
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="mt-7 flex flex-wrap gap-3"
+            >
               <a href={hero?.button_primary_link ?? "#unit"}>
-                <Button size="lg" className="bg-secondary text-secondary-foreground">
+                <Button size="lg" className="bg-secondary text-secondary-foreground transition hover:scale-105">
                   {hero?.button_primary_text ?? "Jelajahi Unit"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </a>
               <a href={hero?.button_secondary_link ?? "#kontak"}>
-                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
+                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white transition hover:scale-105 hover:bg-white/20">
                   {hero?.button_secondary_text ?? "Hubungi Kami"}
                 </Button>
               </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </section>
 
       <ErrorBoundary silent label="Banners">
