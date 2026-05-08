@@ -13,6 +13,7 @@ import DashboardLayout from "@/components/layout/DashboardLayout";
 import Login from "./pages/Login";
 import PublicHome from "./pages/Public/Home";
 import PostDetail from "./pages/Public/PostDetail";
+import JadwalUnit from "./pages/Public/JadwalUnit";
 import UnitDashboard from "./pages/dashboard/UnitDashboard";
 import Siswa from "./pages/Siswa";
 import Jadwal from "./pages/Jadwal";
