@@ -305,63 +305,29 @@ export default function PublicHome() {
             <Badge variant="outline" className="border-primary text-primary"><Calendar className="mr-1 h-3 w-3" /> Jadwal</Badge>
             <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Jadwal Pelajaran (Real-time)</h2>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Klik tombol di bawah untuk menampilkan jadwal terbaru per unit.
+              Pilih unit untuk melihat jadwal pelajaran terbaru pada halaman tersendiri.
             </p>
-            <div className="mt-4">
-              <Button onClick={() => setShowJadwal((v) => !v)} className="gradient-primary text-primary-foreground">
-                <Calendar className="mr-2 h-4 w-4" /> {showJadwal ? "Sembunyikan Jadwal" : "Tampilkan Jadwal"}
-              </Button>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {([
+                { unit: "mi", label: "MI", desc: "Madrasah Ibtidaiyah An-Nuriyah" },
+                { unit: "smp", label: "SMP", desc: "SMP Darul Rohman" },
+                { unit: "smk", label: "SMK", desc: "SMK Darul Rohman" },
+                { unit: "madrasah", label: "Madrasah", desc: "Madrasah Diniyah Al Arsyadiyah" },
+                { unit: "tk", label: "TK", desc: "TK PGRI 02 Roudlotul Huffadz" },
+              ] as const).map((u) => (
+                <Link
+                  key={u.unit}
+                  to={`/jadwal/${u.unit}`}
+                  className="group flex items-center justify-between rounded-2xl border border-border bg-background p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-md-soft"
+                >
+                  <div>
+                    <p className="font-display text-lg font-bold">Jadwal {u.label}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{u.desc}</p>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-primary transition group-hover:translate-x-1" />
+                </Link>
+              ))}
             </div>
-            {showJadwal && (
-            <Tabs defaultValue="mi" className="mt-6">
-              <TabsList className="flex-wrap">
-                <TabsTrigger value="mi">MI</TabsTrigger>
-                <TabsTrigger value="smp">SMP</TabsTrigger>
-                <TabsTrigger value="smk">SMK</TabsTrigger>
-                <TabsTrigger value="madrasah">Madrasah</TabsTrigger>
-                <TabsTrigger value="tk">TK</TabsTrigger>
-              </TabsList>
-              {(["mi", "smp", "smk", "madrasah", "tk"] as const).map((u) => {
-                const rows = schedules.filter((s: any) => s.unit === u).slice(0, 20);
-                return (
-                  <TabsContent key={u} value={u} className="mt-4">
-                    {rows.length === 0 ? (
-                      <p className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
-                        Belum ada jadwal untuk unit {u.toUpperCase()}.
-                      </p>
-                    ) : (
-                      <div className="overflow-x-auto rounded-2xl border border-border shadow-soft">
-                        <Table>
-                          <TableHeader>
-                            <TableRow>
-                              <TableHead>Hari</TableHead>
-                              <TableHead>Jam</TableHead>
-                              <TableHead>Kelas</TableHead>
-                              <TableHead>Mata Pelajaran</TableHead>
-                              <TableHead>Guru</TableHead>
-                              <TableHead>Ruang</TableHead>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody>
-                            {rows.map((s: any) => (
-                              <TableRow key={s.id}>
-                                <TableCell className="font-medium">{s.hari}</TableCell>
-                                <TableCell>{(s.jam_mulai ?? "").slice(0, 5)}–{(s.jam_selesai ?? "").slice(0, 5)}</TableCell>
-                                <TableCell>{s.classes?.nama ?? "-"}</TableCell>
-                                <TableCell>{s.subjects?.nama ?? "-"}</TableCell>
-                                <TableCell>{s.teachers?.nama ?? "-"}</TableCell>
-                                <TableCell>{s.ruangan ?? "-"}</TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
-                      </div>
-                    )}
-                  </TabsContent>
-                );
-              })}
-            </Tabs>
-            )}
           </div>
         </section>
       </ErrorBoundary>
