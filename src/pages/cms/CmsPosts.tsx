@@ -210,6 +210,29 @@ export default function CmsPosts() {
                     </Select>
                   </div>
                 </div>
+                <div className="space-y-3 rounded-lg border border-dashed border-border p-3">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">SEO (opsional)</p>
+                  <div className="space-y-2">
+                    <Label className="text-xs">Slug URL</Label>
+                    <Input placeholder="otomatis dari judul" value={draft.slug ?? ""} onChange={(e) => setDraft({ ...draft, slug: e.target.value })} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs">Meta Title (≤60 karakter)</Label>
+                    <Input maxLength={70} placeholder="Default: judul post" value={draft.meta_title ?? ""} onChange={(e) => setDraft({ ...draft, meta_title: e.target.value })} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs">Meta Description (≤160 karakter)</Label>
+                    <Textarea rows={2} maxLength={180} placeholder="Default: ringkasan/konten" value={draft.meta_description ?? ""} onChange={(e) => setDraft({ ...draft, meta_description: e.target.value })} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs">Keywords (pisahkan dengan koma)</Label>
+                    <Input placeholder="kata kunci 1, kata kunci 2" value={draft.keywords ?? ""} onChange={(e) => setDraft({ ...draft, keywords: e.target.value })} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-xs">OG Image URL (default: cover)</Label>
+                    <Input placeholder="https://..." value={draft.og_image_url ?? ""} onChange={(e) => setDraft({ ...draft, og_image_url: e.target.value })} />
+                  </div>
+                </div>
               </CollapsibleContent>
             </Collapsible>
           </div>
