@@ -123,15 +123,52 @@ export default function PublicHome() {
       url: `${SITE}/#${s.id}`,
     })),
   };
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh Kwanyar",
+    url: SITE + "/",
+    inLanguage: "id-ID",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${SITE}/?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+  const orgLd = {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "EducationalOrganization"],
+    name: "Yayasan Darur Rohman Morombuh Kwanyar",
+    alternateName: ["Yayasan Darurrahman", "Ponpes Darurrahman Morombuh", "Yayasan Darul Rohman"],
+    url: SITE + "/",
+    logo: settings?.logo_url || `${SITE}/favicon.png`,
+    email: settings?.email,
+    telephone: settings?.telepon,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: settings?.alamat,
+      addressLocality: "Morombuh",
+      addressRegion: "Kwanyar, Bangkalan, Jawa Timur",
+      addressCountry: "ID",
+    },
+    sameAs: [
+      settings?.social_facebook, settings?.social_instagram, settings?.social_tiktok,
+      settings?.social_youtube, settings?.social_twitter, settings?.social_telegram,
+      settings?.social_linkedin, settings?.social_threads,
+    ].filter(Boolean),
+  };
 
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
       <SEO
-        title={`${settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh Kwanyar"} — MI An-Nuriyah, SMP, Madrasah Diniyah, TK`}
-        description={settings?.deskripsi ?? "Website resmi Yayasan Darur Rohman Morombuh Kwanyar: MI An-Nuriyah, SMP Darul Rohman, SMK Darul Rohman, Madrasah Diniyah Al Arsyadiyah, dan TK PGRI 02 Roudlotul Huffadz."}
+        title={`${settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh"} | MI, SMP, SMK, Madrasah & TK`}
+        description={settings?.deskripsi ?? "Website resmi Yayasan Darur Rohman Morombuh Kwanyar Bangkalan. Terdiri dari MI An-Nuriyah, SMP Darul Rohman, SMK Darul Rohman, Madrasah Diniyah Al Arsyadiyah, dan TK PGRI 02 Roudlotul Huffadz."}
+        keywords="yayasan darur rohman morombuh, yayasan darurrohhman morombuh, ponpes darurrahman morombuh kwanyar, mi an-nuriyah, madrasah ibtidaiyah an-nuriyah, smp darul rohman, smk darul rohman, madrasah diniyah al arsyadiyah, tk pgri 02 roudlotul huffadz, sekolah islam morombuh, bangkalan madura"
         canonical={SITE + "/"}
-        image={settings?.logo_url}
-        jsonLd={[breadcrumbLd, navLd]}
+        image={settings?.logo_url || `${SITE}/favicon.png`}
+        googleVerification={settings?.google_site_verification}
+        bingVerification={settings?.bing_site_verification}
+        jsonLd={[breadcrumbLd, navLd, websiteLd, orgLd]}
       />
       <IntroLoader
         enabled={hero?.intro_enabled ?? true}
@@ -245,29 +282,32 @@ export default function PublicHome() {
           </Reveal>
           <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { key: "mi" as const,       icon: BookOpen,      color: "gradient-primary", desc: settings?.deskripsi_mi },
-              { key: "smp" as const,      icon: GraduationCap, color: "gradient-sky",     desc: settings?.deskripsi_smp },
-              { key: "smk" as const,      icon: Briefcase,     color: "gradient-gold",    desc: settings?.deskripsi_smk },
-              { key: "madrasah" as const, icon: School,        color: "gradient-primary", desc: settings?.deskripsi_madrasah },
-              { key: "tk" as const,       icon: Sprout,        color: "gradient-sky",     desc: settings?.deskripsi_tk },
+              { key: "mi" as const,       icon: BookOpen,      color: "gradient-primary", desc: settings?.deskripsi_mi,       slug: "mi-an-nuriyah" },
+              { key: "smp" as const,      icon: GraduationCap, color: "gradient-sky",     desc: settings?.deskripsi_smp,      slug: "smp-darul-rohman" },
+              { key: "smk" as const,      icon: Briefcase,     color: "gradient-gold",    desc: settings?.deskripsi_smk,      slug: "smk-darul-rohman" },
+              { key: "madrasah" as const, icon: School,        color: "gradient-primary", desc: settings?.deskripsi_madrasah, slug: "madrasah-diniyah-al-arsyadiyah" },
+              { key: "tk" as const,       icon: Sprout,        color: "gradient-sky",     desc: settings?.deskripsi_tk,       slug: "tk-pgri-02-roudlotul-huffadz" },
             ].map((u) => {
               const info = UNITS[u.key];
               return (
                 <StaggerItem key={u.key}>
-                  <Card id={`unit-${u.key}`} className="scroll-mt-20 rounded-2xl border-border shadow-soft overflow-hidden hover-lift hover-glow">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-4">
-                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-soft">
-                          <img src={info.logo} alt={`Logo ${info.short}`} loading="lazy" decoding="async" className="h-full w-full object-contain" />
+                  <Link to={`/${u.slug}`} aria-label={`Halaman ${info.fullName}`}>
+                    <Card id={`unit-${u.key}`} className="scroll-mt-20 rounded-2xl border-border shadow-soft overflow-hidden hover-lift hover-glow">
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-4">
+                          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-soft">
+                            <img src={info.logo} alt={`Logo ${info.fullName}`} loading="lazy" decoding="async" className="h-full w-full object-contain" />
+                          </div>
+                          <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${u.color} text-primary-foreground`}>
+                            <u.icon className="h-5 w-5" />
+                          </div>
                         </div>
-                        <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${u.color} text-primary-foreground`}>
-                          <u.icon className="h-5 w-5" />
-                        </div>
-                      </div>
-                      <h3 className="mt-4 font-display text-lg font-bold">{info.fullName}</h3>
-                      <p className="mt-2 text-sm text-muted-foreground">{u.desc ?? "Deskripsi belum diisi pada CMS."}</p>
-                    </CardContent>
-                  </Card>
+                        <h3 className="mt-4 font-display text-lg font-bold">{info.fullName}</h3>
+                        <p className="mt-2 text-sm text-muted-foreground">{u.desc ?? "Deskripsi belum diisi pada CMS."}</p>
+                        <p className="mt-3 text-xs font-semibold text-primary">Selengkapnya →</p>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </StaggerItem>
               );
             })}

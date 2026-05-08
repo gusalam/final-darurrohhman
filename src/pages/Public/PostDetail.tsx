@@ -48,7 +48,9 @@ export default function PostDetail() {
 
   const SITE = "https://yayasandarurrahmanku.web.app";
   const canonical = post ? `${SITE}/berita/${post.slug}` : `${SITE}/berita`;
-  const description = post?.excerpt || post?.content?.slice(0, 155) || "Berita dan informasi Yayasan Darur Rohman Morombuh Kwanyar.";
+  const description = post?.meta_description || post?.excerpt || post?.content?.slice(0, 155) || "Berita dan informasi Yayasan Darur Rohman Morombuh Kwanyar.";
+  const seoTitle = post?.meta_title || (post ? `${post.title} — Yayasan Darur Rohman` : "Berita — Yayasan Darur Rohman");
+  const seoImage = post?.og_image_url || post?.cover_url;
   const jsonLd = post ? [
     {
       "@context": "https://schema.org",
@@ -61,25 +63,27 @@ export default function PostDetail() {
     },
     {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
+      "@type": "Article",
       headline: post.title,
       description,
-      image: post.cover_url ? [post.cover_url] : undefined,
+      image: seoImage ? [seoImage] : undefined,
       datePublished: post.published_at || post.created_at,
       dateModified: post.updated_at || post.published_at || post.created_at,
       author: { "@type": "Organization", name: settings?.nama_yayasan || "Yayasan Darur Rohman" },
-      publisher: { "@type": "Organization", name: settings?.nama_yayasan || "Yayasan Darur Rohman" },
+      publisher: { "@type": "Organization", name: settings?.nama_yayasan || "Yayasan Darur Rohman", logo: { "@type": "ImageObject", url: `${SITE}/favicon.png` } },
       mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
       articleSection: post.category,
+      keywords: post.keywords,
     },
   ] : undefined;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title={post ? `${post.title} — Yayasan Darur Rohman` : "Berita — Yayasan Darur Rohman"}
+        title={seoTitle}
         description={description}
-        image={post?.cover_url}
+        keywords={post?.keywords}
+        image={seoImage}
         canonical={canonical}
         type="article"
         jsonLd={jsonLd}

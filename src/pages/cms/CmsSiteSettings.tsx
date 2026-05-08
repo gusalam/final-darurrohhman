@@ -124,6 +124,15 @@ export default function CmsSiteSettings() {
               <Field label="Threads"><Input value={row.social_threads ?? ""} onChange={(e) => setRow({ ...row, social_threads: e.target.value })} placeholder="https://threads.net/@..." /></Field>
             </div>
           </div>
+
+          <div className="border-t border-border pt-4">
+            <h3 className="mb-1 font-display text-lg font-bold">SEO & Verifikasi Search Console</h3>
+            <p className="mb-3 text-xs text-muted-foreground">Tempel kode <code>content</code> dari meta tag verifikasi (bukan tag lengkap).</p>
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <Field label="Google Search Console (google-site-verification)"><Input value={row.google_site_verification ?? ""} onChange={(e) => setRow({ ...row, google_site_verification: e.target.value })} placeholder="kode verifikasi google" /></Field>
+              <Field label="Bing Webmaster (msvalidate.01)"><Input value={row.bing_site_verification ?? ""} onChange={(e) => setRow({ ...row, bing_site_verification: e.target.value })} placeholder="kode verifikasi bing" /></Field>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>

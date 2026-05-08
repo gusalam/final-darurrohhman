@@ -187,6 +187,10 @@ export type Database = {
           created_at: string
           excerpt: string | null
           id: string
+          keywords: string | null
+          meta_description: string | null
+          meta_title: string | null
+          og_image_url: string | null
           published_at: string | null
           slug: string
           status: string
@@ -203,6 +207,10 @@ export type Database = {
           created_at?: string
           excerpt?: string | null
           id?: string
+          keywords?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          og_image_url?: string | null
           published_at?: string | null
           slug: string
           status?: string
@@ -219,6 +227,10 @@ export type Database = {
           created_at?: string
           excerpt?: string | null
           id?: string
+          keywords?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          og_image_url?: string | null
           published_at?: string | null
           slug?: string
           status?: string
@@ -549,6 +561,7 @@ export type Database = {
       site_settings: {
         Row: {
           alamat: string | null
+          bing_site_verification: string | null
           created_at: string
           deskripsi: string | null
           deskripsi_madrasah: string | null
@@ -557,6 +570,7 @@ export type Database = {
           deskripsi_smp: string | null
           deskripsi_tk: string | null
           email: string | null
+          google_site_verification: string | null
           hero_image_url: string | null
           hero_subtitle: string | null
           hero_title: string | null
@@ -581,6 +595,7 @@ export type Database = {
         }
         Insert: {
           alamat?: string | null
+          bing_site_verification?: string | null
           created_at?: string
           deskripsi?: string | null
           deskripsi_madrasah?: string | null
@@ -589,6 +604,7 @@ export type Database = {
           deskripsi_smp?: string | null
           deskripsi_tk?: string | null
           email?: string | null
+          google_site_verification?: string | null
           hero_image_url?: string | null
           hero_subtitle?: string | null
           hero_title?: string | null
@@ -613,6 +629,7 @@ export type Database = {
         }
         Update: {
           alamat?: string | null
+          bing_site_verification?: string | null
           created_at?: string
           deskripsi?: string | null
           deskripsi_madrasah?: string | null
@@ -621,6 +638,7 @@ export type Database = {
           deskripsi_smp?: string | null
           deskripsi_tk?: string | null
           email?: string | null
+          google_site_verification?: string | null
           hero_image_url?: string | null
           hero_subtitle?: string | null
           hero_title?: string | null
