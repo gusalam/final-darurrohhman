@@ -9,8 +9,9 @@ import { PageHeader } from "@/components/shared/StatCard";
 import { ButtonLoading } from "@/components/shared/ButtonLoading";
 import { supabase } from "@/integrations/supabase/client";
 import { uploadFile } from "@/lib/storage";
-import { Save, Sparkles, ArrowRight, Upload } from "lucide-react";
+import { Save, Sparkles, ArrowRight, Upload, Play } from "lucide-react";
 import { toast } from "sonner";
+import { IntroLoader } from "@/components/shared/IntroLoader";
 
 type HeroRow = {
   id?: string;
