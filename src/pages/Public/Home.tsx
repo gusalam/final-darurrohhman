@@ -206,7 +206,7 @@ export default function PublicHome() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto max-w-6xl px-4 py-16 md:py-24 md:px-8"
+            className="relative mx-auto max-w-screen-2xl px-4 py-16 md:py-24 lg:py-32 md:px-8 lg:px-12"
           >
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
               <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
@@ -217,7 +217,7 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="font-display text-3xl font-bold md:text-5xl"
+              className="max-w-4xl font-display text-3xl font-bold leading-tight md:text-5xl lg:text-6xl xl:text-7xl"
             >
               {hero?.title ?? settings?.hero_title ?? "Membentuk Generasi Qur'ani, Cerdas & Berakhlak Mulia"}
             </motion.h1>
@@ -225,7 +225,7 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-5 max-w-xl text-base text-white/90 md:text-lg"
+              className="mt-5 max-w-2xl text-base text-white/90 md:text-lg lg:text-xl"
             >
               {hero?.description ?? settings?.hero_subtitle ?? settings?.deskripsi ?? "Yayasan Darul Rohman menyelenggarakan pendidikan Islam terpadu MI, SMP, SMK, Madrasah Diniyah, dan TK."}
             </motion.p>
