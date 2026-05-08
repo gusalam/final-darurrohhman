@@ -35,7 +35,7 @@ export function IntroLoader({ enabled = true, logoUrl, text, durationMs, preview
   if (!shown) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence onExitComplete={() => { if (preview) onClose?.(); }}>
       {!hidden && (
         <motion.div
           initial={{ opacity: 1 }}
