@@ -7,31 +7,35 @@ interface Props {
   logoUrl?: string | null;
   text?: string | null;
   durationMs?: number | null;
+  /** When true, ignore sessionStorage and always show; call onClose when finished. */
+  preview?: boolean;
+  onClose?: () => void;
 }
 
 const SESSION_KEY = "ydr_intro_shown";
 
-export function IntroLoader({ enabled = true, logoUrl, text, durationMs }: Props) {
+export function IntroLoader({ enabled = true, logoUrl, text, durationMs, preview = false, onClose }: Props) {
   const [shown, setShown] = useState(false);
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!preview && !enabled) return;
     if (typeof window === "undefined") return;
-    if (sessionStorage.getItem(SESSION_KEY) === "1") return;
+    if (!preview && sessionStorage.getItem(SESSION_KEY) === "1") return;
     setShown(true);
+    setHidden(false);
     const dur = Math.max(800, Math.min(durationMs ?? 2500, 6000));
     const t = setTimeout(() => {
       setHidden(true);
-      sessionStorage.setItem(SESSION_KEY, "1");
+      if (!preview) sessionStorage.setItem(SESSION_KEY, "1");
     }, dur);
     return () => clearTimeout(t);
-  }, [enabled, durationMs]);
+  }, [enabled, durationMs, preview]);
 
   if (!shown) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence onExitComplete={() => { if (preview) onClose?.(); }}>
       {!hidden && (
         <motion.div
           initial={{ opacity: 1 }}

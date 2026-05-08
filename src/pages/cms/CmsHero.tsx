@@ -9,8 +9,9 @@ import { PageHeader } from "@/components/shared/StatCard";
 import { ButtonLoading } from "@/components/shared/ButtonLoading";
 import { supabase } from "@/integrations/supabase/client";
 import { uploadFile } from "@/lib/storage";
-import { Save, Sparkles, ArrowRight, Upload } from "lucide-react";
+import { Save, Sparkles, ArrowRight, Upload, Play } from "lucide-react";
 import { toast } from "sonner";
+import { IntroLoader } from "@/components/shared/IntroLoader";
 
 type HeroRow = {
   id?: string;
@@ -34,6 +35,8 @@ export default function CmsHero() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [previewIntro, setPreviewIntro] = useState(false);
+  const [previewKey, setPreviewKey] = useState(0);
 
   const load = async () => {
     setLoading(true);
@@ -138,6 +141,18 @@ export default function CmsHero() {
                     {row.intro_logo_url && <img src={row.intro_logo_url} alt="" className="h-12 w-12 rounded object-contain bg-white p-1" />}
                   </div>
                 </Field>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => { setPreviewKey((k) => k + 1); setPreviewIntro(true); }}
+                  className="w-full"
+                >
+                  <Play className="mr-2 h-4 w-4" /> Preview Intro Loading
+                </Button>
+                <p className="text-xs text-muted-foreground">
+                  Tombol ini menjalankan intro sesuai konfigurasi saat ini tanpa perlu menyimpan terlebih dahulu.
+                </p>
               </div>
             </div>
           </CardContent>
@@ -174,6 +189,18 @@ export default function CmsHero() {
           </CardContent>
         </Card>
       </div>
+
+      {previewIntro && (
+        <IntroLoader
+          key={previewKey}
+          preview
+          enabled
+          logoUrl={row.intro_logo_url}
+          text={row.intro_text}
+          durationMs={row.intro_duration_ms}
+          onClose={() => setPreviewIntro(false)}
+        />
+      )}
     </div>
   );
 }
