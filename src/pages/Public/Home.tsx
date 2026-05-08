@@ -69,10 +69,8 @@ export default function PublicHome() {
   useEffect(() => {
     loadGallery();
     const onFocus = () => loadGallery();
-    const onHash = () => { if (window.location.hash === "#jadwal") setShowJadwal(true); };
     window.addEventListener("focus", onFocus);
-    window.addEventListener("hashchange", onHash);
-    return () => { window.removeEventListener("focus", onFocus); window.removeEventListener("hashchange", onHash); };
+    return () => { window.removeEventListener("focus", onFocus); };
   }, []);
 
   // Debug
