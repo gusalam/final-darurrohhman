@@ -283,7 +283,7 @@ export default function PublicHome() {
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           {[
-            { label: "Jadwal Pelajaran", desc: "Real-time per unit", target: "#jadwal", action: () => setShowJadwal(true) },
+            { label: "Jadwal Pelajaran", desc: "Real-time per unit", target: "#jadwal" },
             { label: "Pengumuman", desc: "Update terbaru", target: "#pengumuman" },
             { label: "Berita & Artikel", desc: "Kegiatan sekolah", target: "#berita" },
           ].map((a) => (
