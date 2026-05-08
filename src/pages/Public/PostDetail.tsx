@@ -80,9 +80,10 @@ export default function PostDetail() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title={post ? `${post.title} — Yayasan Darur Rohman` : "Berita — Yayasan Darur Rohman"}
+        title={seoTitle}
         description={description}
-        image={post?.cover_url}
+        keywords={post?.keywords}
+        image={seoImage}
         canonical={canonical}
         type="article"
         jsonLd={jsonLd}
