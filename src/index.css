@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Yayasan Darul Rohman Design System
+   Solid, high-contrast, clean. No heavy glassmorphism. HSL only. */
+
+@layer base {
+  :root {
+    --background: 140 30% 96%;
+    --foreground: 155 45% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 155 45% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 155 45% 12%;
+
+    /* Primary = islamic green */
+    --primary: 152 65% 28%;
+    --primary-glow: 142 70% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary = warm yellow (logo center) */
+    --secondary: 45 100% 52%;
+    --secondary-foreground: 155 60% 14%;
+
+    /* Accent = sky blue (logo border) */
+    --accent: 202 85% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 140 20% 94%;
+    --muted-foreground: 155 20% 32%;
+
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 65% 35%;
+    --warning: 38 95% 48%;
+
+    --border: 140 18% 86%;
+    --input: 140 20% 90%;
+    --ring: 152 65% 28%;
+
+    --radius: 0.875rem;
+
+    /* Gradients (kept solid, no transparency) */
+    --gradient-primary: linear-gradient(135deg, hsl(152 70% 22%), hsl(142 60% 35%));
+    --gradient-hero: linear-gradient(135deg, hsl(152 70% 18%) 0%, hsl(150 60% 24%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 55%), hsl(38 95% 48%));
+    --gradient-sky: linear-gradient(135deg, hsl(202 85% 48%), hsl(195 80% 40%));
+
+    /* Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(155 40% 15% / 0.08), 0 1px 3px -1px hsl(155 40% 15% / 0.06);
+    --shadow-md: 0 8px 24px -8px hsl(155 50% 15% / 0.18);
+    --shadow-gold: 0 6px 20px -6px hsl(45 100% 45% / 0.4);
+
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Sidebar */
+    --sidebar-background: 152 65% 14%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 45 100% 55%;
+    --sidebar-primary-foreground: 155 60% 14%;
+    --sidebar-accent: 152 50% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 152 45% 22%;
+    --sidebar-ring: 45 100% 55%;
+  }
+
+  .dark {
+    --background: 155 35% 8%;
+    --foreground: 140 25% 96%;
+
+    --card: 155 30% 13%;
+    --card-foreground: 140 25% 96%;
+
+    --popover: 155 30% 13%;
+    --popover-foreground: 140 25% 96%;
+
+    --primary: 142 65% 48%;
+    --primary-glow: 142 75% 58%;
+    --primary-foreground: 155 60% 10%;
+
+    --secondary: 45 100% 55%;
+    --secondary-foreground: 155 60% 14%;
+
+    --accent: 202 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 155 25% 18%;
+    --muted-foreground: 140 15% 72%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 65% 48%;
+    --warning: 38 95% 58%;
+
+    --border: 155 25% 22%;
+    --input: 155 25% 20%;
+    --ring: 142 65% 48%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(152 60% 22%), hsl(142 55% 38%));
+    --gradient-hero: linear-gradient(135deg, hsl(155 55% 10%) 0%, hsl(150 50% 18%) 100%);
+
+    --sidebar-background: 155 50% 8%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 45 100% 55%;
+    --sidebar-primary-foreground: 155 60% 14%;
+    --sidebar-accent: 155 40% 14%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 155 35% 16%;
+    --sidebar-ring: 45 100% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer utilities {
+  .gradient-primary { background: var(--gradient-primary); }
+  .gradient-hero { background: var(--gradient-hero); }
+  .gradient-gold { background: var(--gradient-gold); }
+  .gradient-sky { background: var(--gradient-sky); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-md-soft { box-shadow: var(--shadow-md); }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .transition-smooth { transition: var(--transition-smooth); }
+  .hover-lift {
+    @apply transition-smooth;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+@layer components {
+  .animate-fade-in { animation: fadeIn 0.4s ease-out; }
+  .animate-slide-up { animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  .animate-scale-in { animation: scaleIn 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+}
+
+/* GLOBAL LAYERING (single source of truth)
+   - sidebar (mobile sheet & desktop fixed): z-50
+   - sidebar overlay (mobile only): z-40 (lihat sheet.tsx — bg-black/10)
+   - topbar (sticky): z-30
+   - main content: z-10
+   - dropdown/popover/select content: z-50 (Radix default)
+   - dialog overlay/content: z-50 (Radix default)
+   Nested select/popover dalam dialog dinaikkan ke z-[60] secara eksplisit. */
+[data-sidebar="sidebar"] { z-index: 50; }
+/* Card content tidak boleh menutupi topbar */
+.card, [data-card] { position: relative; z-index: 1; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}

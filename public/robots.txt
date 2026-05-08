@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /yayasan
+Disallow: /cms
+Disallow: /login
+Disallow: /siswa
+Disallow: /kelas
+Disallow: /jadwal
+Disallow: /absensi
+Disallow: /nilai
+Disallow: /raport
+Disallow: /mapel
+Disallow: /keuangan
+Disallow: /guru
+Disallow: /ppdb
+
+Sitemap: https://yayasandarurrahmanku.web.app/sitemap.xml
