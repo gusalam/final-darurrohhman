@@ -370,6 +370,62 @@ export default function PublicHome() {
         </section>
       </ErrorBoundary>
 
+      <ErrorBoundary silent label="Halaman">
+        {pages.length > 0 && (
+          <section id="halaman" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-24 md:px-6 lg:px-12 xl:px-20">
+            <div className="text-center">
+              <Badge variant="outline" className="border-primary text-primary lg:text-sm">Tentang Yayasan</Badge>
+              <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Visi, Misi & Profil</h2>
+              <p className="mx-auto mt-3 max-w-2xl text-sm lg:text-base text-muted-foreground">
+                Halaman resmi yang menjelaskan visi, misi, dan profil Yayasan Darur Rohman Morombuh.
+              </p>
+            </div>
+            <Stagger className={`mt-10 lg:mt-12 grid gap-6 lg:gap-8 ${pages.length === 1 ? "md:grid-cols-1 max-w-3xl mx-auto" : pages.length === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"}`}>
+              {pages.map((p) => {
+                const ytId = (() => {
+                  const u: string = p.youtube_url ?? "";
+                  const m = u.match(/(?:youtu\.be\/|v=)([\w-]{11})/);
+                  return m ? m[1] : null;
+                })();
+                return (
+                  <StaggerItem key={p.id}>
+                    <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft hover-lift">
+                      {p.cover_url && (
+                        <div className="h-48 lg:h-56 overflow-hidden bg-muted">
+                          <img
+                            src={p.cover_url}
+                            alt={p.title}
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
+                            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                          />
+                        </div>
+                      )}
+                      <CardContent className="p-6 lg:p-7">
+                        <Badge className="bg-primary text-primary-foreground uppercase tracking-wide">{p.title}</Badge>
+                        <p className="mt-4 whitespace-pre-line text-sm lg:text-[15px] leading-relaxed text-foreground/85">{p.content}</p>
+                        {ytId && (
+                          <div className="mt-5 aspect-video overflow-hidden rounded-xl shadow-soft">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${ytId}`}
+                              title={p.title}
+                              allowFullScreen
+                              loading="lazy"
+                              className="h-full w-full"
+                            />
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </StaggerItem>
+                );
+              })}
+            </Stagger>
+          </section>
+        )}
+      </ErrorBoundary>
+
       <section id="ppdb" className="bg-muted/40 py-14 lg:py-20">
         <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
           <div className="rounded-3xl gradient-primary p-8 text-primary-foreground shadow-md-soft md:p-12">
