@@ -39,30 +39,30 @@ export function PublicNavbar({ yayasanName, tagline }: Props) {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-sidebar text-white shadow-soft">
-      <div className="mx-auto flex h-[70px] max-w-screen-2xl items-center gap-6 px-4 md:px-6 lg:px-10">
+      <div className="mx-auto flex h-[70px] lg:h-[88px] max-w-screen-2xl items-center gap-6 px-4 md:px-6 lg:px-10 xl:px-16">
         {/* Logo + nama yayasan */}
-        <Link to="/" className="flex min-w-0 flex-1 items-center gap-3 md:flex-initial md:shrink-0">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white p-1 shadow-soft">
+        <Link to="/" className="flex min-w-0 flex-1 items-center gap-3 md:flex-initial md:shrink-0 lg:gap-4">
+          <div className="flex h-11 w-11 lg:h-14 lg:w-14 shrink-0 items-center justify-center rounded-lg bg-white p-1 shadow-soft">
             <img src={logo} alt="Logo" className="h-full w-full object-contain" />
           </div>
           <div className="min-w-0 text-left">
-            <p dir="rtl" lang="ar" className="truncate font-arabic text-[15px] leading-tight text-secondary md:text-base">
+            <p dir="rtl" lang="ar" className="truncate font-arabic text-[15px] leading-tight text-secondary md:text-base lg:text-lg">
               مؤسسة دار الرحمن مورمبوح
             </p>
-            <p className="truncate text-[11px] font-bold leading-tight text-white md:text-xs">
+            <p className="truncate text-[11px] font-bold leading-tight text-white md:text-xs lg:text-sm">
               {yayasanName ?? "Yayasan Darur Rohman Morombuh"}
             </p>
-            {tagline && <p className="truncate text-[10px] text-white/70">{tagline}</p>}
+            {tagline && <p className="truncate text-[10px] lg:text-xs text-white/70">{tagline}</p>}
           </div>
         </Link>
 
         {/* Desktop menu */}
-        <nav className="mx-auto hidden md:flex items-center gap-6 lg:gap-8">
+        <nav className="mx-auto hidden md:flex items-center gap-5 lg:gap-8 xl:gap-10">
           {NAV.map((n) => (
             <button
               key={n.label}
               onClick={() => goTo(n.href)}
-              className="relative text-sm font-medium text-white/90 transition-colors duration-200 hover:text-secondary after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-secondary after:transition-all after:duration-200 hover:after:w-full"
+              className="relative text-sm lg:text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-secondary after:absolute after:left-0 after:-bottom-1.5 after:h-0.5 after:w-0 after:bg-secondary after:transition-all after:duration-200 hover:after:w-full"
             >
               {n.label}
             </button>
