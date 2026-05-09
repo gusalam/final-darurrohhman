@@ -316,22 +316,22 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section id="akademik" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
-        <Badge variant="outline" className="border-primary text-primary">Akademik</Badge>
-        <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Informasi Akademik</h2>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+      <section id="akademik" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-24 md:px-6 lg:px-12 xl:px-20">
+        <Badge variant="outline" className="border-primary text-primary lg:text-sm">Akademik</Badge>
+        <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Informasi Akademik</h2>
+        <p className="mt-3 max-w-3xl text-sm lg:text-base text-muted-foreground">
           Jadwal pelajaran, pengumuman, dan informasi akademik terbaru dari setiap unit.
           Login sebagai admin untuk mengelola data lengkap.
         </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid gap-5 lg:gap-6 sm:grid-cols-3">
           {[
             { label: "Jadwal Pelajaran", desc: "Real-time per unit", target: "#jadwal" },
             { label: "Pengumuman", desc: "Update terbaru", target: "#pengumuman" },
             { label: "Berita & Artikel", desc: "Kegiatan sekolah", target: "#berita" },
           ].map((a) => (
-            <a key={a.label} href={a.target} className="rounded-2xl border border-border bg-card p-5 shadow-soft transition hover:shadow-md-soft">
-              <p className="font-bold">{a.label}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{a.desc}</p>
+            <a key={a.label} href={a.target} className="rounded-2xl border border-border bg-card p-6 lg:p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-md-soft">
+              <p className="font-bold lg:text-lg">{a.label}</p>
+              <p className="mt-2 text-xs lg:text-sm text-muted-foreground">{a.desc}</p>
             </a>
           ))}
         </div>
