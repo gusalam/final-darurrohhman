@@ -180,7 +180,7 @@ export default function PublicHome() {
 
       <div className="min-w-0">
 
-        <section id="tentang" className="relative overflow-hidden gradient-hero text-white">
+        <section id="tentang" className="relative overflow-hidden gradient-hero text-white lg:min-h-[80vh] lg:flex lg:items-center">
           {heroBgVideo ? (
             <>
               <video
@@ -206,10 +206,10 @@ export default function PublicHome() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto max-w-screen-2xl px-4 py-16 md:py-24 lg:py-32 md:px-8 lg:px-12"
+            className="relative mx-auto w-full max-w-screen-2xl px-4 py-16 md:py-24 lg:py-32 xl:py-40 md:px-8 lg:px-12 xl:px-20"
           >
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-              <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
+              <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground lg:px-3 lg:py-1 lg:text-sm">
                 <Sparkles className="mr-1 h-3 w-3" /> {hero?.badge_text ?? "Sistem Terpadu Pendidikan"}
               </Badge>
             </motion.div>
@@ -217,7 +217,7 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="max-w-4xl font-display text-3xl font-bold leading-tight md:text-5xl lg:text-6xl xl:text-7xl"
+              className="max-w-5xl font-display text-3xl font-bold leading-tight md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[5.5rem]"
             >
               {hero?.title ?? settings?.hero_title ?? "Membentuk Generasi Qur'ani, Cerdas & Berakhlak Mulia"}
             </motion.h1>
@@ -225,7 +225,7 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-5 max-w-2xl text-base text-white/90 md:text-lg lg:text-xl"
+              className="mt-5 lg:mt-8 max-w-3xl text-base text-white/90 md:text-lg lg:text-xl xl:text-2xl"
             >
               {hero?.description ?? settings?.hero_subtitle ?? settings?.deskripsi ?? "Yayasan Darul Rohman menyelenggarakan pendidikan Islam terpadu MI, SMP, SMK, Madrasah Diniyah, dan TK."}
             </motion.p>
@@ -233,15 +233,15 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-7 flex flex-wrap gap-3"
+              className="mt-7 lg:mt-10 flex flex-wrap gap-3 lg:gap-4"
             >
               <a href={hero?.button_primary_link ?? "#unit"}>
-                <Button size="lg" className="bg-secondary text-secondary-foreground transition hover:scale-105">
+                <Button size="lg" className="bg-secondary text-secondary-foreground transition hover:scale-105 lg:h-14 lg:px-8 lg:text-base">
                   {hero?.button_primary_text ?? "Jelajahi Unit"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </a>
               <a href={hero?.button_secondary_link ?? "#kontak"}>
-                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white transition hover:scale-105 hover:bg-white/20">
+                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white transition hover:scale-105 hover:bg-white/20 lg:h-14 lg:px-8 lg:text-base">
                   {hero?.button_secondary_text ?? "Hubungi Kami"}
                 </Button>
               </a>
