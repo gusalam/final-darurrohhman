@@ -402,16 +402,16 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Berita">
         {berita.length > 0 && (
-          <section id="berita" className="bg-muted/40 py-14 lg:py-20">
-            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
-              <Badge variant="outline"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
-              <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Berita & Artikel</h2>
-              <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <section id="berita" className="bg-muted/40 py-14 lg:py-24">
+            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
+              <Badge variant="outline" className="lg:text-sm"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
+              <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Berita & Artikel</h2>
+              <Stagger className="mt-8 lg:mt-10 grid gap-5 lg:gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {berita.map((p) => (
                   <StaggerItem key={p.id}>
                     <Link to={`/berita/${p.slug}`} className="group block h-full">
                       <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft hover-lift">
-                        <div className="h-40 overflow-hidden bg-muted">
+                        <div className="h-44 lg:h-52 xl:h-56 overflow-hidden bg-muted">
                           {p.cover_url ? (
                             <img
                               src={p.cover_url}
@@ -427,10 +427,10 @@ export default function PublicHome() {
                             </div>
                           )}
                         </div>
-                        <CardContent className="space-y-2 p-5">
+                        <CardContent className="space-y-2 p-5 lg:p-6">
                           <Badge className="bg-accent text-accent-foreground capitalize">{p.category}</Badge>
-                          <h3 className="font-display text-lg font-bold transition-colors group-hover:text-primary">{p.title}</h3>
-                          <p className="line-clamp-3 text-sm text-muted-foreground">{p.excerpt ?? p.content}</p>
+                          <h3 className="font-display text-lg lg:text-xl font-bold transition-colors group-hover:text-primary">{p.title}</h3>
+                          <p className="line-clamp-3 text-sm lg:text-[15px] text-muted-foreground">{p.excerpt ?? p.content}</p>
                         </CardContent>
                       </Card>
                     </Link>
