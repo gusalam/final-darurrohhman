@@ -180,7 +180,7 @@ export default function PublicHome() {
 
       <div className="min-w-0">
 
-        <section id="tentang" className="relative overflow-hidden gradient-hero text-white">
+        <section id="tentang" className="relative overflow-hidden gradient-hero text-white lg:min-h-[80vh] lg:flex lg:items-center">
           {heroBgVideo ? (
             <>
               <video
@@ -206,10 +206,10 @@ export default function PublicHome() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto max-w-screen-2xl px-4 py-16 md:py-24 lg:py-32 md:px-8 lg:px-12"
+            className="relative mx-auto w-full max-w-screen-2xl px-4 py-16 md:py-24 lg:py-32 xl:py-40 md:px-8 lg:px-12 xl:px-20"
           >
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-              <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground">
+              <Badge className="mb-4 border-0 bg-secondary text-secondary-foreground lg:px-3 lg:py-1 lg:text-sm">
                 <Sparkles className="mr-1 h-3 w-3" /> {hero?.badge_text ?? "Sistem Terpadu Pendidikan"}
               </Badge>
             </motion.div>
@@ -217,7 +217,7 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="max-w-4xl font-display text-3xl font-bold leading-tight md:text-5xl lg:text-6xl xl:text-7xl"
+              className="max-w-5xl font-display text-3xl font-bold leading-tight md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[5.5rem]"
             >
               {hero?.title ?? settings?.hero_title ?? "Membentuk Generasi Qur'ani, Cerdas & Berakhlak Mulia"}
             </motion.h1>
@@ -225,7 +225,7 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.35, duration: 0.6 }}
-              className="mt-5 max-w-2xl text-base text-white/90 md:text-lg lg:text-xl"
+              className="mt-5 lg:mt-8 max-w-3xl text-base text-white/90 md:text-lg lg:text-xl xl:text-2xl"
             >
               {hero?.description ?? settings?.hero_subtitle ?? settings?.deskripsi ?? "Yayasan Darul Rohman menyelenggarakan pendidikan Islam terpadu MI, SMP, SMK, Madrasah Diniyah, dan TK."}
             </motion.p>
@@ -233,15 +233,15 @@ export default function PublicHome() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="mt-7 flex flex-wrap gap-3"
+              className="mt-7 lg:mt-10 flex flex-wrap gap-3 lg:gap-4"
             >
               <a href={hero?.button_primary_link ?? "#unit"}>
-                <Button size="lg" className="bg-secondary text-secondary-foreground transition hover:scale-105">
+                <Button size="lg" className="bg-secondary text-secondary-foreground transition hover:scale-105 lg:h-14 lg:px-8 lg:text-base">
                   {hero?.button_primary_text ?? "Jelajahi Unit"} <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </a>
               <a href={hero?.button_secondary_link ?? "#kontak"}>
-                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white transition hover:scale-105 hover:bg-white/20">
+                <Button size="lg" variant="outline" className="border-white/40 bg-white/10 text-white transition hover:scale-105 hover:bg-white/20 lg:h-14 lg:px-8 lg:text-base">
                   {hero?.button_secondary_text ?? "Hubungi Kami"}
                 </Button>
               </a>
@@ -274,13 +274,14 @@ export default function PublicHome() {
         )}
       </ErrorBoundary>
 
-      <section id="unit" className="bg-muted/40 py-14 lg:py-20">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
+      <section id="unit" className="bg-muted/40 py-14 lg:py-24 xl:py-28">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
           <Reveal className="text-center">
-            <Badge variant="outline" className="border-primary text-primary">Unit Pendidikan</Badge>
-            <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">MI · SMP · SMK · Madrasah · TK</h2>
+            <Badge variant="outline" className="border-primary text-primary lg:text-sm">Unit Pendidikan</Badge>
+            <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">MI · SMP · SMK · Madrasah · TK</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground lg:text-base">Lima unit pendidikan terpadu dari jenjang TK hingga SMK di bawah Yayasan Darul Rohman.</p>
           </Reveal>
-          <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <Stagger className="mt-10 lg:mt-14 grid gap-5 lg:gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {[
               { key: "mi" as const,       icon: BookOpen,      color: "gradient-primary", desc: settings?.deskripsi_mi,       slug: "mi-an-nuriyah" },
               { key: "smp" as const,      icon: GraduationCap, color: "gradient-sky",     desc: settings?.deskripsi_smp,      slug: "smp-darul-rohman" },
@@ -292,19 +293,19 @@ export default function PublicHome() {
               return (
                 <StaggerItem key={u.key}>
                   <Link to={`/${u.slug}`} aria-label={`Halaman ${info.fullName}`}>
-                    <Card id={`unit-${u.key}`} className="scroll-mt-20 rounded-2xl border-border shadow-soft overflow-hidden hover-lift hover-glow">
-                      <CardContent className="p-6">
+                    <Card id={`unit-${u.key}`} className="h-full scroll-mt-20 rounded-2xl border-border shadow-soft overflow-hidden hover-lift hover-glow">
+                      <CardContent className="p-6 lg:p-7">
                         <div className="flex items-center gap-4">
-                          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-soft">
+                          <div className="flex h-16 w-16 lg:h-20 lg:w-20 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-soft">
                             <img src={info.logo} alt={`Logo ${info.fullName}`} loading="lazy" decoding="async" className="h-full w-full object-contain" />
                           </div>
-                          <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${u.color} text-primary-foreground`}>
-                            <u.icon className="h-5 w-5" />
+                          <div className={`flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-xl ${u.color} text-primary-foreground`}>
+                            <u.icon className="h-5 w-5 lg:h-6 lg:w-6" />
                           </div>
                         </div>
-                        <h3 className="mt-4 font-display text-lg font-bold">{info.fullName}</h3>
-                        <p className="mt-2 text-sm text-muted-foreground">{u.desc ?? "Deskripsi belum diisi pada CMS."}</p>
-                        <p className="mt-3 text-xs font-semibold text-primary">Selengkapnya →</p>
+                        <h3 className="mt-4 lg:mt-5 font-display text-lg lg:text-xl font-bold">{info.fullName}</h3>
+                        <p className="mt-2 text-sm lg:text-[15px] text-muted-foreground line-clamp-3">{u.desc ?? "Deskripsi belum diisi pada CMS."}</p>
+                        <p className="mt-4 text-xs lg:text-sm font-semibold text-primary">Selengkapnya →</p>
                       </CardContent>
                     </Card>
                   </Link>
@@ -315,22 +316,22 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section id="akademik" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
-        <Badge variant="outline" className="border-primary text-primary">Akademik</Badge>
-        <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Informasi Akademik</h2>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+      <section id="akademik" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-24 md:px-6 lg:px-12 xl:px-20">
+        <Badge variant="outline" className="border-primary text-primary lg:text-sm">Akademik</Badge>
+        <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Informasi Akademik</h2>
+        <p className="mt-3 max-w-3xl text-sm lg:text-base text-muted-foreground">
           Jadwal pelajaran, pengumuman, dan informasi akademik terbaru dari setiap unit.
           Login sebagai admin untuk mengelola data lengkap.
         </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid gap-5 lg:gap-6 sm:grid-cols-3">
           {[
             { label: "Jadwal Pelajaran", desc: "Real-time per unit", target: "#jadwal" },
             { label: "Pengumuman", desc: "Update terbaru", target: "#pengumuman" },
             { label: "Berita & Artikel", desc: "Kegiatan sekolah", target: "#berita" },
           ].map((a) => (
-            <a key={a.label} href={a.target} className="rounded-2xl border border-border bg-card p-5 shadow-soft transition hover:shadow-md-soft">
-              <p className="font-bold">{a.label}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{a.desc}</p>
+            <a key={a.label} href={a.target} className="rounded-2xl border border-border bg-card p-6 lg:p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-md-soft">
+              <p className="font-bold lg:text-lg">{a.label}</p>
+              <p className="mt-2 text-xs lg:text-sm text-muted-foreground">{a.desc}</p>
             </a>
           ))}
         </div>
@@ -401,16 +402,16 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Berita">
         {berita.length > 0 && (
-          <section id="berita" className="bg-muted/40 py-14 lg:py-20">
-            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
-              <Badge variant="outline"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
-              <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Berita & Artikel</h2>
-              <Stagger className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <section id="berita" className="bg-muted/40 py-14 lg:py-24">
+            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
+              <Badge variant="outline" className="lg:text-sm"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
+              <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Berita & Artikel</h2>
+              <Stagger className="mt-8 lg:mt-10 grid gap-5 lg:gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {berita.map((p) => (
                   <StaggerItem key={p.id}>
                     <Link to={`/berita/${p.slug}`} className="group block h-full">
                       <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft hover-lift">
-                        <div className="h-40 overflow-hidden bg-muted">
+                        <div className="h-44 lg:h-52 xl:h-56 overflow-hidden bg-muted">
                           {p.cover_url ? (
                             <img
                               src={p.cover_url}
@@ -426,10 +427,10 @@ export default function PublicHome() {
                             </div>
                           )}
                         </div>
-                        <CardContent className="space-y-2 p-5">
+                        <CardContent className="space-y-2 p-5 lg:p-6">
                           <Badge className="bg-accent text-accent-foreground capitalize">{p.category}</Badge>
-                          <h3 className="font-display text-lg font-bold transition-colors group-hover:text-primary">{p.title}</h3>
-                          <p className="line-clamp-3 text-sm text-muted-foreground">{p.excerpt ?? p.content}</p>
+                          <h3 className="font-display text-lg lg:text-xl font-bold transition-colors group-hover:text-primary">{p.title}</h3>
+                          <p className="line-clamp-3 text-sm lg:text-[15px] text-muted-foreground">{p.excerpt ?? p.content}</p>
                         </CardContent>
                       </Card>
                     </Link>
@@ -471,10 +472,10 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Video">
         {youtubeId && (
-          <section id="video" className="bg-muted/40 py-14 lg:py-20">
-            <div className="mx-auto max-w-5xl px-4 md:px-6">
-              <h2 className="font-display text-2xl font-bold md:text-3xl">Video Profil</h2>
-              <div className="mt-6 aspect-video overflow-hidden rounded-2xl shadow-soft">
+          <section id="video" className="bg-muted/40 py-14 lg:py-24">
+            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
+              <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">Video Profil</h2>
+              <div className="mt-8 lg:mt-10 mx-auto max-w-6xl aspect-video overflow-hidden rounded-2xl shadow-md-soft">
                 <iframe src={`https://www.youtube.com/embed/${youtubeId}`} title="YouTube" allowFullScreen className="h-full w-full" />
               </div>
             </div>
@@ -482,21 +483,21 @@ export default function PublicHome() {
         )}
       </ErrorBoundary>
 
-      <section id="kontak" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-2">
+      <section id="kontak" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-24 md:px-6 lg:px-12 xl:px-20">
+        <div className="grid gap-8 lg:gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-2xl font-bold md:text-3xl">Kontak Yayasan</h2>
-            <div className="mt-6 space-y-3">
+            <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">Kontak Yayasan</h2>
+            <div className="mt-6 lg:mt-8 space-y-3">
               <Row icon={MapPin} label="Alamat" value={settings?.alamat ?? "-"} />
               <Row icon={Phone} label="Telepon" value={settings?.telepon ?? "-"} />
               <Row icon={Mail} label="Email" value={settings?.email ?? "-"} />
             </div>
-            <div className="mt-6">
+            <div className="mt-6 lg:mt-8">
               <SocialLinks data={settings} />
             </div>
           </div>
           {settings?.map_embed && (
-            <div className="aspect-video overflow-hidden rounded-2xl shadow-soft">
+            <div className="aspect-video lg:aspect-auto lg:min-h-[420px] overflow-hidden rounded-2xl shadow-md-soft">
               <iframe
                 src={normalizeMapEmbed(settings.map_embed)}
                 title="Lokasi"
