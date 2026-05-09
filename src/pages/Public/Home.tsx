@@ -274,13 +274,14 @@ export default function PublicHome() {
         )}
       </ErrorBoundary>
 
-      <section id="unit" className="bg-muted/40 py-14 lg:py-20">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
+      <section id="unit" className="bg-muted/40 py-14 lg:py-24 xl:py-28">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
           <Reveal className="text-center">
-            <Badge variant="outline" className="border-primary text-primary">Unit Pendidikan</Badge>
-            <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">MI · SMP · SMK · Madrasah · TK</h2>
+            <Badge variant="outline" className="border-primary text-primary lg:text-sm">Unit Pendidikan</Badge>
+            <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">MI · SMP · SMK · Madrasah · TK</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground lg:text-base">Lima unit pendidikan terpadu dari jenjang TK hingga SMK di bawah Yayasan Darul Rohman.</p>
           </Reveal>
-          <Stagger className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <Stagger className="mt-10 lg:mt-14 grid gap-5 lg:gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {[
               { key: "mi" as const,       icon: BookOpen,      color: "gradient-primary", desc: settings?.deskripsi_mi,       slug: "mi-an-nuriyah" },
               { key: "smp" as const,      icon: GraduationCap, color: "gradient-sky",     desc: settings?.deskripsi_smp,      slug: "smp-darul-rohman" },
@@ -292,19 +293,19 @@ export default function PublicHome() {
               return (
                 <StaggerItem key={u.key}>
                   <Link to={`/${u.slug}`} aria-label={`Halaman ${info.fullName}`}>
-                    <Card id={`unit-${u.key}`} className="scroll-mt-20 rounded-2xl border-border shadow-soft overflow-hidden hover-lift hover-glow">
-                      <CardContent className="p-6">
+                    <Card id={`unit-${u.key}`} className="h-full scroll-mt-20 rounded-2xl border-border shadow-soft overflow-hidden hover-lift hover-glow">
+                      <CardContent className="p-6 lg:p-7">
                         <div className="flex items-center gap-4">
-                          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-soft">
+                          <div className="flex h-16 w-16 lg:h-20 lg:w-20 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5 shadow-soft">
                             <img src={info.logo} alt={`Logo ${info.fullName}`} loading="lazy" decoding="async" className="h-full w-full object-contain" />
                           </div>
-                          <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${u.color} text-primary-foreground`}>
-                            <u.icon className="h-5 w-5" />
+                          <div className={`flex h-10 w-10 lg:h-12 lg:w-12 items-center justify-center rounded-xl ${u.color} text-primary-foreground`}>
+                            <u.icon className="h-5 w-5 lg:h-6 lg:w-6" />
                           </div>
                         </div>
-                        <h3 className="mt-4 font-display text-lg font-bold">{info.fullName}</h3>
-                        <p className="mt-2 text-sm text-muted-foreground">{u.desc ?? "Deskripsi belum diisi pada CMS."}</p>
-                        <p className="mt-3 text-xs font-semibold text-primary">Selengkapnya →</p>
+                        <h3 className="mt-4 lg:mt-5 font-display text-lg lg:text-xl font-bold">{info.fullName}</h3>
+                        <p className="mt-2 text-sm lg:text-[15px] text-muted-foreground line-clamp-3">{u.desc ?? "Deskripsi belum diisi pada CMS."}</p>
+                        <p className="mt-4 text-xs lg:text-sm font-semibold text-primary">Selengkapnya →</p>
                       </CardContent>
                     </Card>
                   </Link>
