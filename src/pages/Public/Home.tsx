@@ -472,10 +472,10 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Video">
         {youtubeId && (
-          <section id="video" className="bg-muted/40 py-14 lg:py-20">
-            <div className="mx-auto max-w-5xl px-4 md:px-6">
-              <h2 className="font-display text-2xl font-bold md:text-3xl">Video Profil</h2>
-              <div className="mt-6 aspect-video overflow-hidden rounded-2xl shadow-soft">
+          <section id="video" className="bg-muted/40 py-14 lg:py-24">
+            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
+              <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">Video Profil</h2>
+              <div className="mt-8 lg:mt-10 mx-auto max-w-6xl aspect-video overflow-hidden rounded-2xl shadow-md-soft">
                 <iframe src={`https://www.youtube.com/embed/${youtubeId}`} title="YouTube" allowFullScreen className="h-full w-full" />
               </div>
             </div>
