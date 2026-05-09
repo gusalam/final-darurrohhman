@@ -483,21 +483,21 @@ export default function PublicHome() {
         )}
       </ErrorBoundary>
 
-      <section id="kontak" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-2">
+      <section id="kontak" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-24 md:px-6 lg:px-12 xl:px-20">
+        <div className="grid gap-8 lg:gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-2xl font-bold md:text-3xl">Kontak Yayasan</h2>
-            <div className="mt-6 space-y-3">
+            <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">Kontak Yayasan</h2>
+            <div className="mt-6 lg:mt-8 space-y-3">
               <Row icon={MapPin} label="Alamat" value={settings?.alamat ?? "-"} />
               <Row icon={Phone} label="Telepon" value={settings?.telepon ?? "-"} />
               <Row icon={Mail} label="Email" value={settings?.email ?? "-"} />
             </div>
-            <div className="mt-6">
+            <div className="mt-6 lg:mt-8">
               <SocialLinks data={settings} />
             </div>
           </div>
           {settings?.map_embed && (
-            <div className="aspect-video overflow-hidden rounded-2xl shadow-soft">
+            <div className="aspect-video lg:aspect-auto lg:min-h-[420px] overflow-hidden rounded-2xl shadow-md-soft">
               <iframe
                 src={normalizeMapEmbed(settings.map_embed)}
                 title="Lokasi"
