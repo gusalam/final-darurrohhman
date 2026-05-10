@@ -93,11 +93,11 @@ export default function UnitPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title={`${unit.fullName} — Yayasan Darur Rohman Morombuh Kwanyar`}
+        title={seoTitle}
         description={description}
-        keywords={KEYWORDS_BY_UNIT[unitKey]}
+        keywords={seoKeywords}
         canonical={url}
-        image={unit.logo}
+        image={seoImage}
         jsonLd={[schoolLd, breadcrumbLd]}
       />
       <PublicNavbar yayasanName={settings?.nama_yayasan} tagline={settings?.tagline} />
