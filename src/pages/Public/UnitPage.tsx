@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
+import { RichContent } from "@/components/RichContent";
 import { Reveal } from "@/components/shared/Reveal";
 import { supabase } from "@/integrations/supabase/client";
 import { UNITS, type UnitKey } from "@/lib/units";
@@ -126,12 +127,18 @@ export default function UnitPage() {
         <Reveal>
           <h2 className="font-display text-xl font-bold md:text-2xl">Tentang {unit.name}</h2>
           <Card className="mt-4 rounded-2xl border-0 shadow-soft">
-            <CardContent className="prose prose-neutral max-w-none p-6 text-sm leading-relaxed text-foreground/90 dark:prose-invert md:text-base">
-              <p>{description}</p>
-              <p>
-                {unit.fullName} adalah salah satu unit pendidikan di bawah naungan {settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh Kwanyar"}.
-                Berlokasi di Morombuh, Kwanyar, Bangkalan, Jawa Timur.
-              </p>
+            <CardContent className="max-w-none p-6 text-sm leading-relaxed text-foreground/90 md:text-base">
+              {cmsPage?.content ? (
+                <RichContent text={cmsPage.content} />
+              ) : (
+                <>
+                  <p>{description}</p>
+                  <p className="mt-3">
+                    {unit.fullName} adalah salah satu unit pendidikan di bawah naungan {settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh Kwanyar"}.
+                    Berlokasi di Morombuh, Kwanyar, Bangkalan, Jawa Timur.
+                  </p>
+                </>
+              )}
             </CardContent>
           </Card>
         </Reveal>
