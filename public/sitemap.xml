@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://yayasandarurrahmanku.web.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/mi-an-nuriyah</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/smp-darul-rohman</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/smk-darul-rohman</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/madrasah-diniyah-al-arsyadiyah</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/tk-pgri-02-roudlotul-huffadz</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/berita</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/galeri</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/kontak</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/mi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/smp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/smk</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/madrasah</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/tk</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://yayasandarurrahmanku.web.app/</loc><lastmod>2026-05-10</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/mi-an-nuriyah</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/smp-darul-rohman</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/smk-darul-rohman</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/madrasah-diniyah-al-arsyadiyah</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/tk-pgri-02-roudlotul-huffadz</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/berita</loc><lastmod>2026-05-10</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/galeri</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/kontak</loc><lastmod>2026-05-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/ppdb</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/mi</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/smp</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/smk</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/madrasah</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://yayasandarurrahmanku.web.app/jadwal/tk</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
 </urlset>
