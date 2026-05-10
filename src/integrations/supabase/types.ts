@@ -143,8 +143,13 @@ export type Database = {
           gallery_urls: string[] | null
           id: string
           is_published: boolean
+          keywords: string | null
           map_embed: string | null
+          meta_description: string | null
+          meta_title: string | null
+          og_image_url: string | null
           slug: string
+          sort_order: number
           title: string
           updated_at: string
           youtube_url: string | null
@@ -156,8 +161,13 @@ export type Database = {
           gallery_urls?: string[] | null
           id?: string
           is_published?: boolean
+          keywords?: string | null
           map_embed?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          og_image_url?: string | null
           slug: string
+          sort_order?: number
           title: string
           updated_at?: string
           youtube_url?: string | null
@@ -169,8 +179,13 @@ export type Database = {
           gallery_urls?: string[] | null
           id?: string
           is_published?: boolean
+          keywords?: string | null
           map_embed?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          og_image_url?: string | null
           slug?: string
+          sort_order?: number
           title?: string
           updated_at?: string
           youtube_url?: string | null

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
+import { RichContent } from "@/components/RichContent";
 import { Reveal } from "@/components/shared/Reveal";
 import { supabase } from "@/integrations/supabase/client";
 import { UNITS, type UnitKey } from "@/lib/units";
@@ -40,15 +41,20 @@ export default function UnitPage() {
   const slug = useLocation().pathname.replace(/^\//, "");
   const unitKey = SLUG_TO_UNIT[slug];
   const [settings, setSettings] = useState<any>(null);
+  const [cmsPage, setCmsPage] = useState<any>(null);
 
   useEffect(() => {
     supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
-  }, []);
+    supabase.from("cms_pages").select("*").eq("slug", slug).eq("is_published", true).maybeSingle().then(({ data }) => setCmsPage(data));
+  }, [slug]);
 
   if (!unitKey) return <Navigate to="/" replace />;
   const unit = UNITS[unitKey];
   const descKey = ({ mi: "deskripsi_mi", smp: "deskripsi_smp", smk: "deskripsi_smk", madrasah: "deskripsi_madrasah", tk: "deskripsi_tk" } as const)[unitKey];
-  const description = settings?.[descKey] || DESC_BY_UNIT[unitKey];
+  const description = cmsPage?.meta_description || cmsPage?.content?.slice(0, 160) || settings?.[descKey] || DESC_BY_UNIT[unitKey];
+  const seoTitle = cmsPage?.meta_title || `${unit.fullName} — Yayasan Darur Rohman Morombuh Kwanyar`;
+  const seoImage = cmsPage?.og_image_url || cmsPage?.cover_url || unit.logo;
+  const seoKeywords = cmsPage?.keywords || KEYWORDS_BY_UNIT[unitKey];
   const url = `${SITE}/${slug}`;
 
   const schoolLd = {
@@ -88,11 +94,11 @@ export default function UnitPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title={`${unit.fullName} — Yayasan Darur Rohman Morombuh Kwanyar`}
+        title={seoTitle}
         description={description}
-        keywords={KEYWORDS_BY_UNIT[unitKey]}
+        keywords={seoKeywords}
         canonical={url}
-        image={unit.logo}
+        image={seoImage}
         jsonLd={[schoolLd, breadcrumbLd]}
       />
       <PublicNavbar yayasanName={settings?.nama_yayasan} tagline={settings?.tagline} />
@@ -121,12 +127,18 @@ export default function UnitPage() {
         <Reveal>
           <h2 className="font-display text-xl font-bold md:text-2xl">Tentang {unit.name}</h2>
           <Card className="mt-4 rounded-2xl border-0 shadow-soft">
-            <CardContent className="prose prose-neutral max-w-none p-6 text-sm leading-relaxed text-foreground/90 dark:prose-invert md:text-base">
-              <p>{description}</p>
-              <p>
-                {unit.fullName} adalah salah satu unit pendidikan di bawah naungan {settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh Kwanyar"}.
-                Berlokasi di Morombuh, Kwanyar, Bangkalan, Jawa Timur.
-              </p>
+            <CardContent className="max-w-none p-6 text-sm leading-relaxed text-foreground/90 md:text-base">
+              {cmsPage?.content ? (
+                <RichContent text={cmsPage.content} />
+              ) : (
+                <>
+                  <p>{description}</p>
+                  <p className="mt-3">
+                    {unit.fullName} adalah salah satu unit pendidikan di bawah naungan {settings?.nama_yayasan ?? "Yayasan Darur Rohman Morombuh Kwanyar"}.
+                    Berlokasi di Morombuh, Kwanyar, Bangkalan, Jawa Timur.
+                  </p>
+                </>
+              )}
             </CardContent>
           </Card>
         </Reveal>

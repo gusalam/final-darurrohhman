@@ -15,6 +15,7 @@ import PublicHome from "./pages/Public/Home";
 import PostDetail from "./pages/Public/PostDetail";
 import JadwalUnit from "./pages/Public/JadwalUnit";
 import UnitPage from "./pages/Public/UnitPage";
+import PageDetail from "./pages/Public/PageDetail";
 import UnitDashboard from "./pages/dashboard/UnitDashboard";
 import Siswa from "./pages/Siswa";
 import Jadwal from "./pages/Jadwal";
@@ -56,6 +57,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<PublicHome />} />
                 <Route path="/berita/:slug" element={<PostDetail />} />
+                <Route path="/halaman/:slug" element={<PageDetail />} />
                 <Route path="/jadwal/:unit" element={<JadwalUnit />} />
                 <Route path="/mi-an-nuriyah" element={<UnitPage />} />
                 <Route path="/smp-darul-rohman" element={<UnitPage />} />

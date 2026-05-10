@@ -15,6 +15,7 @@ import { GaleriSlider } from "@/components/shared/GaleriSlider";
 import { SocialLinks } from "@/components/shared/SocialLinks";
 import { IntroLoader } from "@/components/shared/IntroLoader";
 import { Reveal, Stagger, StaggerItem } from "@/components/shared/Reveal";
+import { RichContent } from "@/components/RichContent";
 import { motion } from "framer-motion";
 
 const PLACEHOLDER = "/placeholder.png";
@@ -44,7 +45,7 @@ export default function PublicHome() {
   const [storageGallery, setStorageGallery] = useState<string[]>([]);
   const { data: banners } = useSupabaseTable<any>("cms_banners", { filters: { is_active: true }, orderBy: { column: "sort_order", ascending: true } });
   const { data: posts } = useSupabaseTable<any>("cms_posts", { filters: { status: "published" } });
-  const { data: pages } = useSupabaseTable<any>("cms_pages", { filters: { is_published: true } });
+  const { data: pages } = useSupabaseTable<any>("cms_pages", { filters: { is_published: true }, orderBy: { column: "sort_order", ascending: true } });
   const { data: schedules } = useSupabaseTable<any>("schedules", { select: "*, classes(nama, unit), subjects(nama), teachers(nama)", orderBy: { column: "jam_mulai", ascending: true } });
 
   useEffect(() => {
@@ -138,6 +139,7 @@ export default function PublicHome() {
   const orgLd = {
     "@context": "https://schema.org",
     "@type": ["Organization", "EducationalOrganization"],
+    "@id": SITE + "/#organization",
     name: "Yayasan Darur Rohman Morombuh Kwanyar",
     alternateName: ["Yayasan Darurrahman", "Ponpes Darurrahman Morombuh", "Yayasan Darul Rohman"],
     url: SITE + "/",
@@ -152,11 +154,32 @@ export default function PublicHome() {
       addressCountry: "ID",
     },
     sameAs: [
+      "https://share.google/y0AxziAumWUyNqxeS",
       settings?.social_facebook, settings?.social_instagram, settings?.social_tiktok,
       settings?.social_youtube, settings?.social_twitter, settings?.social_telegram,
       settings?.social_linkedin, settings?.social_threads,
     ].filter(Boolean),
   };
+
+  const videoLd = youtubeId ? {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: `Video Profil ${settings?.nama_yayasan ?? "Yayasan Darur Rohman"}`,
+    description: settings?.deskripsi ?? "Video profil resmi Yayasan Darur Rohman Morombuh Kwanyar.",
+    thumbnailUrl: [`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`],
+    uploadDate: settings?.created_at ?? new Date().toISOString(),
+    embedUrl: `https://www.youtube.com/embed/${youtubeId}`,
+    contentUrl: `https://www.youtube.com/watch?v=${youtubeId}`,
+    publisher: { "@type": "Organization", "@id": SITE + "/#organization" },
+  } : null;
+
+  const galleryLd = gallery.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    name: `Galeri ${settings?.nama_yayasan ?? "Yayasan Darur Rohman"}`,
+    url: SITE + "/#galeri",
+    image: gallery.map((u) => ({ "@type": "ImageObject", contentUrl: u, url: u })),
+  } : null;
 
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
@@ -168,7 +191,7 @@ export default function PublicHome() {
         image={settings?.logo_url || `${SITE}/favicon.png`}
         googleVerification={settings?.google_site_verification}
         bingVerification={settings?.bing_site_verification}
-        jsonLd={[breadcrumbLd, navLd, websiteLd, orgLd]}
+        jsonLd={[breadcrumbLd, navLd, websiteLd, orgLd, videoLd, galleryLd].filter(Boolean) as any}
       />
       <IntroLoader
         enabled={hero?.intro_enabled ?? true}
@@ -389,35 +412,38 @@ export default function PublicHome() {
                 })();
                 return (
                   <StaggerItem key={p.id}>
-                    <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft hover-lift">
-                      {p.cover_url && (
-                        <div className="h-48 lg:h-56 overflow-hidden bg-muted">
-                          <img
-                            src={p.cover_url}
-                            alt={p.title}
-                            loading="lazy"
-                            decoding="async"
-                            onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                            className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                          />
-                        </div>
-                      )}
-                      <CardContent className="p-6 lg:p-7">
-                        <Badge className="bg-primary text-primary-foreground uppercase tracking-wide">{p.title}</Badge>
-                        <p className="mt-4 whitespace-pre-line text-sm lg:text-[15px] leading-relaxed text-foreground/85">{p.content}</p>
-                        {ytId && (
-                          <div className="mt-5 aspect-video overflow-hidden rounded-xl shadow-soft">
-                            <iframe
-                              src={`https://www.youtube.com/embed/${ytId}`}
-                              title={p.title}
-                              allowFullScreen
+                    <Link to={`/halaman/${p.slug}`} className="group block h-full" aria-label={`Buka halaman ${p.title}`}>
+                      <Card className="h-full overflow-hidden rounded-2xl border-border shadow-soft hover-lift">
+                        {p.cover_url && (
+                          <div className="h-48 lg:h-56 overflow-hidden bg-muted">
+                            <img
+                              src={p.cover_url}
+                              alt={p.title}
                               loading="lazy"
-                              className="h-full w-full"
+                              decoding="async"
+                              onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
+                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                           </div>
                         )}
-                      </CardContent>
-                    </Card>
+                        <CardContent className="p-6 lg:p-7">
+                          <Badge className="bg-primary text-primary-foreground uppercase tracking-wide">{p.title}</Badge>
+                          <RichContent text={p.content} className="mt-4 text-sm lg:text-[15px] line-clamp-6" />
+                          {ytId && (
+                            <div className="mt-5 aspect-video overflow-hidden rounded-xl shadow-soft">
+                              <iframe
+                                src={`https://www.youtube.com/embed/${ytId}`}
+                                title={p.title}
+                                allowFullScreen
+                                loading="lazy"
+                                className="h-full w-full"
+                              />
+                            </div>
+                          )}
+                          <p className="mt-4 text-xs lg:text-sm font-semibold text-primary">Baca selengkapnya →</p>
+                        </CardContent>
+                      </Card>
+                    </Link>
                   </StaggerItem>
                 );
               })}
