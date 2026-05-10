@@ -40,15 +40,20 @@ export default function UnitPage() {
   const slug = useLocation().pathname.replace(/^\//, "");
   const unitKey = SLUG_TO_UNIT[slug];
   const [settings, setSettings] = useState<any>(null);
+  const [cmsPage, setCmsPage] = useState<any>(null);
 
   useEffect(() => {
     supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
-  }, []);
+    supabase.from("cms_pages").select("*").eq("slug", slug).eq("is_published", true).maybeSingle().then(({ data }) => setCmsPage(data));
+  }, [slug]);
 
   if (!unitKey) return <Navigate to="/" replace />;
   const unit = UNITS[unitKey];
   const descKey = ({ mi: "deskripsi_mi", smp: "deskripsi_smp", smk: "deskripsi_smk", madrasah: "deskripsi_madrasah", tk: "deskripsi_tk" } as const)[unitKey];
-  const description = settings?.[descKey] || DESC_BY_UNIT[unitKey];
+  const description = cmsPage?.meta_description || cmsPage?.content?.slice(0, 160) || settings?.[descKey] || DESC_BY_UNIT[unitKey];
+  const seoTitle = cmsPage?.meta_title || `${unit.fullName} — Yayasan Darur Rohman Morombuh Kwanyar`;
+  const seoImage = cmsPage?.og_image_url || cmsPage?.cover_url || unit.logo;
+  const seoKeywords = cmsPage?.keywords || KEYWORDS_BY_UNIT[unitKey];
   const url = `${SITE}/${slug}`;
 
   const schoolLd = {
