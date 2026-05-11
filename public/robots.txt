@@ -12,7 +12,6 @@ Disallow: /raport
 Disallow: /mapel
 Disallow: /keuangan
 Disallow: /guru
-Disallow: /ppdb
 
 Sitemap: https://yayasandarurrahmanku.web.app/sitemap.xml
 Sitemap: https://vbynaipdeyerewnmizwc.supabase.co/functions/v1/sitemap
