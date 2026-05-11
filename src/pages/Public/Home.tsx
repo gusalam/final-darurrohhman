@@ -526,26 +526,36 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Galeri">
         {gallery.length > 0 && (
-          <section id="galeri" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
-            <h2 className="font-display text-2xl font-bold md:text-3xl">Galeri</h2>
+          <section id="galeri" className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">Galeri</h2>
+              <p className="mt-3 text-sm text-muted-foreground lg:text-base">
+                Dokumentasi kegiatan & momen di Yayasan Darul Rohman.
+              </p>
+            </div>
 
             {/* Mobile: auto-sliding carousel */}
-            <div className="mt-6 md:hidden">
+            <div className="mt-8 md:hidden">
               <GaleriSlider images={gallery} />
             </div>
 
-            {/* Desktop: grid */}
-            <div className="mt-6 hidden grid-cols-3 gap-3 md:grid md:grid-cols-4 xl:grid-cols-6">
+            {/* Tablet & Desktop: balanced responsive grid */}
+            <div className="mt-8 hidden gap-4 md:grid md:grid-cols-3 lg:mt-10 lg:grid-cols-4 lg:gap-5 2xl:grid-cols-5">
               {gallery.map((u) => (
-                <img
+                <div
                   key={u}
-                  src={u}
-                  alt="Galeri"
-                  loading="lazy"
-                  decoding="async"
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                  className="aspect-square rounded-xl bg-muted object-cover transition-transform duration-500 hover:scale-105"
-                />
+                  className="group relative overflow-hidden rounded-2xl bg-muted shadow-soft ring-1 ring-border/50"
+                >
+                  <img
+                    src={u}
+                    alt="Galeri Yayasan Darul Rohman"
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
+                    className="aspect-square h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
               ))}
             </div>
           </section>
@@ -555,15 +565,29 @@ export default function PublicHome() {
       <ErrorBoundary silent label="Video">
         {youtubeId && (
           <section id="video" className="bg-muted/40 py-14 lg:py-24">
-            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
-              <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">Video Profil</h2>
-              <div className="mt-8 lg:mt-10 mx-auto max-w-6xl aspect-video overflow-hidden rounded-2xl shadow-md-soft">
-                <iframe src={`https://www.youtube.com/embed/${youtubeId}`} title="YouTube" allowFullScreen className="h-full w-full" />
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-3xl text-center">
+                <h2 className="font-display text-2xl font-bold md:text-3xl lg:text-4xl">Video Profil</h2>
+                <p className="mt-3 text-sm text-muted-foreground lg:text-base">
+                  Kenali lebih dekat Yayasan Darul Rohman melalui video profil resmi kami.
+                </p>
               </div>
+              <Reveal>
+                <div className="mx-auto mt-8 aspect-video w-full max-w-5xl overflow-hidden rounded-2xl bg-black shadow-md-soft ring-1 ring-border/50 lg:mt-12">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${youtubeId}`}
+                    title="Video Profil Yayasan Darul Rohman"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                </div>
+              </Reveal>
             </div>
           </section>
         )}
       </ErrorBoundary>
+
 
       <section id="kontak" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-24 md:px-6 lg:px-12 xl:px-20">
         <div className="grid gap-8 lg:gap-12 lg:grid-cols-2">
