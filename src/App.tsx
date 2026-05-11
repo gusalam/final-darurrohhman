@@ -35,6 +35,7 @@ import CmsSiteSettings from "./pages/cms/CmsSiteSettings";
 import CmsHero from "./pages/cms/CmsHero";
 import CmsGaleri from "./pages/cms/CmsGaleri";
 import NotFound from "./pages/NotFound";
+import { AIAgent } from "@/components/AIAgent";
 
 const queryClient = new QueryClient();
 
@@ -98,6 +99,7 @@ const App = () => (
 
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              <AIAgent />
             </BrowserRouter>
           </TooltipProvider>
         </UnitProvider>
