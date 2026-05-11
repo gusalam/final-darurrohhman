@@ -2,3 +2,6 @@ project_id = "vbynaipdeyerewnmizwc"
 
 [functions.sitemap]
 verify_jwt = false
+
+[functions.ai-agent]
+verify_jwt = false
