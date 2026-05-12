@@ -341,20 +341,21 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section id="akademik" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-24 md:px-6 lg:px-12 xl:px-20">
-        <Badge variant="outline" className="border-primary text-primary lg:text-sm">Akademik</Badge>
-        <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Informasi Akademik</h2>
-        <p className="mt-3 max-w-3xl text-sm lg:text-base text-muted-foreground">
-          Jadwal pelajaran, pengumuman, dan informasi akademik terbaru dari setiap unit.
-          Login sebagai admin untuk mengelola data lengkap.
-        </p>
-        <div className="mt-8 grid gap-5 lg:gap-6 sm:grid-cols-3">
+      <section id="akademik" className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <Badge variant="outline" className="border-primary text-primary lg:text-sm">Akademik</Badge>
+          <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Informasi Akademik</h2>
+          <p className="mt-3 text-sm lg:text-base text-muted-foreground">
+            Jadwal pelajaran, pengumuman, dan informasi akademik terbaru dari setiap unit.
+          </p>
+        </div>
+        <div className="mx-auto mt-10 grid max-w-5xl gap-5 lg:gap-6 sm:grid-cols-3">
           {[
             { label: "Jadwal Pelajaran", desc: "Real-time per unit", target: "#jadwal" },
             { label: "Pengumuman", desc: "Update terbaru", target: "#pengumuman" },
             { label: "Berita & Artikel", desc: "Kegiatan sekolah", target: "#berita" },
           ].map((a) => (
-            <a key={a.label} href={a.target} className="rounded-2xl border border-border bg-card p-6 lg:p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-md-soft">
+            <a key={a.label} href={a.target} className="rounded-2xl border border-border bg-card p-6 lg:p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-md-soft text-center">
               <p className="font-bold lg:text-lg">{a.label}</p>
               <p className="mt-2 text-xs lg:text-sm text-muted-foreground">{a.desc}</p>
             </a>
