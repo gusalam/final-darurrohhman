@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
+import { RichContent } from "@/components/RichContent";
 
 const PLACEHOLDER = "/placeholder.png";
 
@@ -136,9 +137,9 @@ export default function PostDetail() {
               />
             )}
 
-            <div className="prose prose-neutral mt-8 max-w-none whitespace-pre-wrap text-base leading-relaxed text-foreground/90 dark:prose-invert">
-              {post.content || "—"}
-            </div>
+            {post.content
+              ? <RichContent text={post.content} className="mt-8 text-base md:text-lg" />
+              : <p className="mt-8 text-muted-foreground">—</p>}
           </article>
         )}
 

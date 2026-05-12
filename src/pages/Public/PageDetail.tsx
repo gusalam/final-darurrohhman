@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { PublicNavbar } from "@/components/layout/PublicNavbar";
 import { SEO } from "@/components/SEO";
 import { RichContent } from "@/components/RichContent";
+import { Lightbox } from "@/components/shared/Lightbox";
 
 const SITE = "https://yayasandarurrahmanku.web.app";
 const PLACEHOLDER = "/placeholder.png";
@@ -16,6 +17,7 @@ export default function PageDetail() {
   const [settings, setSettings] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [lbIndex, setLbIndex] = useState<number | null>(null);
 
   useEffect(() => {
     supabase.from("site_settings").select("*").limit(1).maybeSingle().then(({ data }) => setSettings(data));
@@ -126,8 +128,22 @@ export default function PageDetail() {
               <section className="mt-10">
                 <h2 className="font-display text-xl font-bold">Galeri</h2>
                 <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
-                  {page.gallery_urls.map((u: string) => (
-                    <img key={u} src={u} alt={page.title} loading="lazy" className="aspect-square rounded-xl bg-muted object-cover" />
+                  {page.gallery_urls.map((u: string, i: number) => (
+                    <button
+                      key={u}
+                      type="button"
+                      onClick={() => setLbIndex(i)}
+                      className="group relative aspect-square overflow-hidden rounded-xl bg-muted ring-1 ring-border/50 transition hover:shadow-md"
+                      aria-label={`Buka gambar ${i + 1}`}
+                    >
+                      <img
+                        src={u}
+                        alt={`${page.title} — ${i + 1}`}
+                        loading={i < 4 ? "eager" : "lazy"}
+                        className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"
+                      />
+                      <span className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition group-hover:opacity-100" />
+                    </button>
                   ))}
                 </div>
               </section>
@@ -135,6 +151,14 @@ export default function PageDetail() {
           </article>
         )}
       </div>
+      {page?.gallery_urls?.length > 0 && (
+        <Lightbox
+          images={page.gallery_urls}
+          index={lbIndex}
+          onClose={() => setLbIndex(null)}
+          onIndexChange={setLbIndex}
+        />
+      )}
     </div>
   );
 }
