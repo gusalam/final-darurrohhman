@@ -541,25 +541,36 @@ export default function PublicHome() {
               <GaleriSlider images={gallery} />
             </div>
 
-            {/* Tablet & Desktop: balanced responsive grid */}
+            {/* Tablet & Desktop: balanced responsive grid with uniform aspect ratio */}
             <div className="mt-8 hidden gap-4 md:grid md:grid-cols-3 lg:mt-10 lg:grid-cols-4 lg:gap-5 2xl:grid-cols-5">
-              {gallery.map((u) => (
-                <div
+              {gallery.map((u, i) => (
+                <button
+                  type="button"
                   key={u}
-                  className="group relative overflow-hidden rounded-2xl bg-muted shadow-soft ring-1 ring-border/50"
+                  onClick={() => setLightboxIdx(i)}
+                  aria-label={`Buka foto galeri ${i + 1}`}
+                  className="group relative aspect-square w-full overflow-hidden rounded-2xl bg-muted shadow-soft ring-1 ring-border/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <img
                     src={u}
-                    alt="Galeri Yayasan Darul Rohman"
-                    loading="lazy"
+                    alt={`Galeri Yayasan Darul Rohman ${i + 1}`}
+                    loading={i < 4 ? "eager" : "lazy"}
+                    fetchPriority={i < 4 ? "high" : "low"}
                     decoding="async"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                    className="aspect-square h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </div>
+                </button>
               ))}
             </div>
+
+            <Lightbox
+              images={gallery}
+              index={lightboxIdx}
+              onClose={() => setLightboxIdx(null)}
+              onIndexChange={setLightboxIdx}
+            />
           </section>
         )}
       </ErrorBoundary>
