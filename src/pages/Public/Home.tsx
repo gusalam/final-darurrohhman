@@ -492,10 +492,15 @@ export default function PublicHome() {
       <ErrorBoundary silent label="Berita">
         {berita.length > 0 && (
           <section id="berita" className="bg-muted/40 py-14 lg:py-24">
-            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
-              <Badge variant="outline" className="lg:text-sm"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
-              <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Berita & Artikel</h2>
-              <Stagger className="mt-8 lg:mt-10 grid gap-5 lg:gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-3xl text-center">
+                <Badge variant="outline" className="lg:text-sm"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
+                <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Berita & Artikel</h2>
+                <p className="mt-3 text-sm lg:text-base text-muted-foreground">
+                  Kabar terbaru, kegiatan, dan artikel dari unit-unit Yayasan Darul Rohman.
+                </p>
+              </div>
+              <Stagger className="mt-10 grid gap-5 lg:gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {berita.map((p) => (
                   <StaggerItem key={p.id}>
                     <Link to={`/berita/${p.slug}`} className="group block h-full">
