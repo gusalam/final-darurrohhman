@@ -472,10 +472,12 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Pengumuman">
         {pengumuman.length > 0 && (
-          <section id="pengumuman" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
-            <Badge variant="outline"><Megaphone className="mr-1 h-3 w-3" /> Pengumuman</Badge>
-            <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Pengumuman Terbaru</h2>
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <section id="pengumuman" className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline"><Megaphone className="mr-1 h-3 w-3" /> Pengumuman</Badge>
+              <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Pengumuman Terbaru</h2>
+            </div>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
               {pengumuman.map((p) => (
                 <article key={p.id} className="rounded-2xl border-l-4 border-secondary bg-secondary/10 p-5 shadow-soft">
                   <h3 className="font-bold">{p.title}</h3>
