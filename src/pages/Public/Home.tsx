@@ -42,7 +42,8 @@ function normalizeMapEmbed(input: string): string {
 export default function PublicHome() {
   const [settings, setSettings] = useState<any>(null);
   const [hero, setHero] = useState<any>(null);
-  
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+
   const [storageGallery, setStorageGallery] = useState<string[]>([]);
   const { data: banners } = useSupabaseTable<any>("cms_banners", { filters: { is_active: true }, orderBy: { column: "sort_order", ascending: true } });
   const { data: posts } = useSupabaseTable<any>("cms_posts", { filters: { status: "published" } });
