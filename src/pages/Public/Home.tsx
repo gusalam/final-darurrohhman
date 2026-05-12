@@ -16,6 +16,7 @@ import { SocialLinks } from "@/components/shared/SocialLinks";
 import { IntroLoader } from "@/components/shared/IntroLoader";
 import { Reveal, Stagger, StaggerItem } from "@/components/shared/Reveal";
 import { RichContent } from "@/components/RichContent";
+import { Lightbox } from "@/components/shared/Lightbox";
 import { motion } from "framer-motion";
 
 const PLACEHOLDER = "/placeholder.png";
@@ -41,7 +42,8 @@ function normalizeMapEmbed(input: string): string {
 export default function PublicHome() {
   const [settings, setSettings] = useState<any>(null);
   const [hero, setHero] = useState<any>(null);
-  
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+
   const [storageGallery, setStorageGallery] = useState<string[]>([]);
   const { data: banners } = useSupabaseTable<any>("cms_banners", { filters: { is_active: true }, orderBy: { column: "sort_order", ascending: true } });
   const { data: posts } = useSupabaseTable<any>("cms_posts", { filters: { status: "published" } });
@@ -339,20 +341,21 @@ export default function PublicHome() {
         </div>
       </section>
 
-      <section id="akademik" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-24 md:px-6 lg:px-12 xl:px-20">
-        <Badge variant="outline" className="border-primary text-primary lg:text-sm">Akademik</Badge>
-        <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Informasi Akademik</h2>
-        <p className="mt-3 max-w-3xl text-sm lg:text-base text-muted-foreground">
-          Jadwal pelajaran, pengumuman, dan informasi akademik terbaru dari setiap unit.
-          Login sebagai admin untuk mengelola data lengkap.
-        </p>
-        <div className="mt-8 grid gap-5 lg:gap-6 sm:grid-cols-3">
+      <section id="akademik" className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <Badge variant="outline" className="border-primary text-primary lg:text-sm">Akademik</Badge>
+          <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Informasi Akademik</h2>
+          <p className="mt-3 text-sm lg:text-base text-muted-foreground">
+            Jadwal pelajaran, pengumuman, dan informasi akademik terbaru dari setiap unit.
+          </p>
+        </div>
+        <div className="mx-auto mt-10 grid max-w-5xl gap-5 lg:gap-6 sm:grid-cols-3">
           {[
             { label: "Jadwal Pelajaran", desc: "Real-time per unit", target: "#jadwal" },
             { label: "Pengumuman", desc: "Update terbaru", target: "#pengumuman" },
             { label: "Berita & Artikel", desc: "Kegiatan sekolah", target: "#berita" },
           ].map((a) => (
-            <a key={a.label} href={a.target} className="rounded-2xl border border-border bg-card p-6 lg:p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-md-soft">
+            <a key={a.label} href={a.target} className="rounded-2xl border border-border bg-card p-6 lg:p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-md-soft text-center">
               <p className="font-bold lg:text-lg">{a.label}</p>
               <p className="mt-2 text-xs lg:text-sm text-muted-foreground">{a.desc}</p>
             </a>
@@ -361,14 +364,16 @@ export default function PublicHome() {
       </section>
 
       <ErrorBoundary silent label="Jadwal">
-        <section id="jadwal" className="bg-card py-14 lg:py-20">
-          <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
-            <Badge variant="outline" className="border-primary text-primary"><Calendar className="mr-1 h-3 w-3" /> Jadwal</Badge>
-            <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Jadwal Pelajaran (Real-time)</h2>
-            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Pilih unit untuk melihat jadwal pelajaran terbaru pada halaman tersendiri.
-            </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <section id="jadwal" className="bg-card py-14 lg:py-24">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="border-primary text-primary"><Calendar className="mr-1 h-3 w-3" /> Jadwal</Badge>
+              <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Jadwal Pelajaran (Real-time)</h2>
+              <p className="mt-3 text-sm lg:text-base text-muted-foreground">
+                Pilih unit untuk melihat jadwal pelajaran terbaru pada halaman tersendiri.
+              </p>
+            </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {([
                 { unit: "mi", label: "MI", desc: "Madrasah Ibtidaiyah An-Nuriyah" },
                 { unit: "smp", label: "SMP", desc: "SMP Darul Rohman" },
@@ -467,10 +472,12 @@ export default function PublicHome() {
 
       <ErrorBoundary silent label="Pengumuman">
         {pengumuman.length > 0 && (
-          <section id="pengumuman" className="mx-auto max-w-screen-2xl px-4 py-14 lg:py-20 md:px-6 lg:px-10">
-            <Badge variant="outline"><Megaphone className="mr-1 h-3 w-3" /> Pengumuman</Badge>
-            <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Pengumuman Terbaru</h2>
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <section id="pengumuman" className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline"><Megaphone className="mr-1 h-3 w-3" /> Pengumuman</Badge>
+              <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Pengumuman Terbaru</h2>
+            </div>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
               {pengumuman.map((p) => (
                 <article key={p.id} className="rounded-2xl border-l-4 border-secondary bg-secondary/10 p-5 shadow-soft">
                   <h3 className="font-bold">{p.title}</h3>
@@ -485,10 +492,15 @@ export default function PublicHome() {
       <ErrorBoundary silent label="Berita">
         {berita.length > 0 && (
           <section id="berita" className="bg-muted/40 py-14 lg:py-24">
-            <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-12 xl:px-20">
-              <Badge variant="outline" className="lg:text-sm"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
-              <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Berita & Artikel</h2>
-              <Stagger className="mt-8 lg:mt-10 grid gap-5 lg:gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-3xl text-center">
+                <Badge variant="outline" className="lg:text-sm"><Newspaper className="mr-1 h-3 w-3" /> Berita</Badge>
+                <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Berita & Artikel</h2>
+                <p className="mt-3 text-sm lg:text-base text-muted-foreground">
+                  Kabar terbaru, kegiatan, dan artikel dari unit-unit Yayasan Darul Rohman.
+                </p>
+              </div>
+              <Stagger className="mt-10 grid gap-5 lg:gap-7 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {berita.map((p) => (
                   <StaggerItem key={p.id}>
                     <Link to={`/berita/${p.slug}`} className="group block h-full">
@@ -539,25 +551,36 @@ export default function PublicHome() {
               <GaleriSlider images={gallery} />
             </div>
 
-            {/* Tablet & Desktop: balanced responsive grid */}
+            {/* Tablet & Desktop: balanced responsive grid with uniform aspect ratio */}
             <div className="mt-8 hidden gap-4 md:grid md:grid-cols-3 lg:mt-10 lg:grid-cols-4 lg:gap-5 2xl:grid-cols-5">
-              {gallery.map((u) => (
-                <div
+              {gallery.map((u, i) => (
+                <button
+                  type="button"
                   key={u}
-                  className="group relative overflow-hidden rounded-2xl bg-muted shadow-soft ring-1 ring-border/50"
+                  onClick={() => setLightboxIdx(i)}
+                  aria-label={`Buka foto galeri ${i + 1}`}
+                  className="group relative aspect-square w-full overflow-hidden rounded-2xl bg-muted shadow-soft ring-1 ring-border/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <img
                     src={u}
-                    alt="Galeri Yayasan Darul Rohman"
-                    loading="lazy"
+                    alt={`Galeri Yayasan Darul Rohman ${i + 1}`}
+                    loading={i < 4 ? "eager" : "lazy"}
+                    fetchPriority={i < 4 ? "high" : "low"}
                     decoding="async"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = PLACEHOLDER; }}
-                    className="aspect-square h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </div>
+                </button>
               ))}
             </div>
+
+            <Lightbox
+              images={gallery}
+              index={lightboxIdx}
+              onClose={() => setLightboxIdx(null)}
+              onIndexChange={setLightboxIdx}
+            />
           </section>
         )}
       </ErrorBoundary>
