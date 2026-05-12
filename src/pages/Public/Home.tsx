@@ -16,6 +16,7 @@ import { SocialLinks } from "@/components/shared/SocialLinks";
 import { IntroLoader } from "@/components/shared/IntroLoader";
 import { Reveal, Stagger, StaggerItem } from "@/components/shared/Reveal";
 import { RichContent } from "@/components/RichContent";
+import { Lightbox } from "@/components/shared/Lightbox";
 import { motion } from "framer-motion";
 
 const PLACEHOLDER = "/placeholder.png";
