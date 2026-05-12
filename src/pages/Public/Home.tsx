@@ -364,14 +364,16 @@ export default function PublicHome() {
       </section>
 
       <ErrorBoundary silent label="Jadwal">
-        <section id="jadwal" className="bg-card py-14 lg:py-20">
-          <div className="mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-10">
-            <Badge variant="outline" className="border-primary text-primary"><Calendar className="mr-1 h-3 w-3" /> Jadwal</Badge>
-            <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">Jadwal Pelajaran (Real-time)</h2>
-            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              Pilih unit untuk melihat jadwal pelajaran terbaru pada halaman tersendiri.
-            </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <section id="jadwal" className="bg-card py-14 lg:py-24">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <Badge variant="outline" className="border-primary text-primary"><Calendar className="mr-1 h-3 w-3" /> Jadwal</Badge>
+              <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl lg:text-4xl">Jadwal Pelajaran (Real-time)</h2>
+              <p className="mt-3 text-sm lg:text-base text-muted-foreground">
+                Pilih unit untuk melihat jadwal pelajaran terbaru pada halaman tersendiri.
+              </p>
+            </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {([
                 { unit: "mi", label: "MI", desc: "Madrasah Ibtidaiyah An-Nuriyah" },
                 { unit: "smp", label: "SMP", desc: "SMP Darul Rohman" },
