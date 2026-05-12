@@ -85,7 +85,19 @@ export default function CmsPages() {
             <div className="space-y-1.5"><Label>Cover</Label>
               <div className="flex items-center gap-2">
                 <Input type="file" accept="image/*" onChange={(e) => e.target.files?.[0] && onCover(e.target.files[0])} />
-                {draft.cover_url && <img src={draft.cover_url} alt="" className="h-10 w-16 rounded object-cover" />}
+                {draft.cover_url && (
+                  <div className="relative">
+                    <img src={draft.cover_url} alt="" className="h-10 w-16 rounded object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => setDraft({ ...draft, cover_url: "" })}
+                      className="absolute -right-1 -top-1 rounded-full bg-destructive p-0.5 text-destructive-foreground"
+                      aria-label="Hapus cover"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="space-y-1.5"><Label>Konten</Label><Textarea rows={8} value={draft.content ?? ""} onChange={(e) => setDraft({ ...draft, content: e.target.value })} /></div>
