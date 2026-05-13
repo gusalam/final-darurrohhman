@@ -90,7 +90,28 @@ export default function Siswa() {
       try {
         const wb = XLSX.read(ev.target?.result, { type: "binary" });
         const ws = wb.Sheets[wb.SheetNames[0]];
-        const rows: any[] = XLSX.utils.sheet_to_json(ws);
+        const rawRows: any[] = XLSX.utils.sheet_to_json(ws, { defval: "" });
+        const norm = (s: string) => s.toString().toLowerCase().replace(/[\s_\-./]+/g, "");
+        const aliases: Record<string, string[]> = {
+          nama_siswa: ["namasiswa", "nama", "namalengkap", "fullname", "name"],
+          nis: ["nis", "noinduk", "nomorinduk"],
+          nisn: ["nisn"],
+          kelas: ["kelas", "class", "rombel"],
+          jenis_kelamin: ["jeniskelamin", "jk", "gender", "lp"],
+          alamat: ["alamat", "address"],
+          tanggal_lahir: ["tanggallahir", "tgllahir", "ttl", "birthdate", "dob"],
+          nama_wali: ["namawali", "wali", "namaorangtua", "namaortu"],
+          telepon_wali: ["teleponwali", "telpwali", "hpwali", "nohpwali", "notelpwali", "nowali"],
+        };
+        const rows = rawRows.map((r) => {
+          const out: any = {};
+          const keysNorm = Object.keys(r).map((k) => ({ orig: k, n: norm(k) }));
+          for (const [target, alts] of Object.entries(aliases)) {
+            const match = keysNorm.find((k) => alts.includes(k.n));
+            if (match) out[target] = r[match.orig];
+          }
+          return out;
+        });
         const errors: string[] = [];
         const existingNis = new Set(data.map((s) => s.nis).filter(Boolean));
         const seenNis = new Set<string>();
