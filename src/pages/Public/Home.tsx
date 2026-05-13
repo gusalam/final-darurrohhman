@@ -82,8 +82,8 @@ export default function PublicHome() {
     console.log("[Home] banners:", banners.length, "posts:", posts.length, "gallery:", storageGallery.length);
   }
 
-  const pengumuman = posts.filter((p) => p.category === "pengumuman").slice(0, 3);
-  const berita = posts.filter((p) => p.category !== "pengumuman").slice(0, 6);
+  const pengumuman = posts.filter((p) => p.category === "pengumuman");
+  const berita = posts.filter((p) => p.category !== "pengumuman");
   // Combine storage gallery + cms_pages gallery_urls
   const pageGallery: string[] = pages.flatMap((p) => p.gallery_urls ?? []);
   const gallery: string[] = Array.from(new Set([...storageGallery, ...pageGallery])).slice(0, 12);
